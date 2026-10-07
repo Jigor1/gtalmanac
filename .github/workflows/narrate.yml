@@ -1,0 +1,51 @@
+# GTAlmanac narrator.
+# Claude pushes tts/<name>.json -> {"text": "...", "voice_id": "...", "model_id": "..."}
+# This job asks ElevenLabs for the narration (the key stays in the repo secret
+# ELEVENLABS_API_KEY), saves audio/<name>.mp3, removes the job file and commits.
+name: narrate
+on:
+  push:
+    branches: [main]
+    paths: ['tts/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: narrate
+  cancel-in-progress: false
+jobs:
+  narrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate narration
+        env:
+          XI_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: |
+          shopt -s nullglob
+          mkdir -p audio
+          for f in tts/*.json; do
+            name=$(basename "$f" .json)
+            voice=$(jq -r '.voice_id // "pNInz6obpgDQGcFmaJgB"' "$f")
+            jq '{text: .text, model_id: (.model_id // "eleven_multilingual_v2")}' "$f" > /tmp/body.json
+            code=$(curl -sS -o "audio/$name.mp3" -w '%{http_code}' \
+              -X POST "https://api.elevenlabs.io/v1/text-to-speech/$voice?output_format=mp3_44100_128" \
+              -H "xi-api-key: $XI_KEY" -H "Content-Type: application/json" \
+              --data @/tmp/body.json)
+            if [ "$code" = "200" ]; then
+              echo "ok: $name"
+              rm -f "audio/$name.error.txt"
+            else
+              mv "audio/$name.mp3" "audio/$name.error.txt"
+              echo "failed: $name (HTTP $code)"
+            fi
+            git rm -q "$f"
+          done
+      - name: Commit
+        run: |
+          git config user.name "gtalmanac-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A audio
+          git diff --cached --quiet && exit 0
+          git commit -m "audio: narration ready"
+          for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 3; done
