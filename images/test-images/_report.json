@@ -1,0 +1,26 @@
+[
+ {
+  "name": "gta6art",
+  "file": "gta6art.jpg",
+  "source": "https://www.rockstargames.com/VI/-/opengraph-image.jpg?opengraph-image.0t8ty~nlmxq2s.jpg",
+  "bytes": 864851
+ },
+ {
+  "name": "memo-article",
+  "file": "memo-article.jpg",
+  "source": "https://www.dexerto.com/cdn-image/wp-content/uploads/2026/09/25/PlayStation-5-Disc-Survey.jpg",
+  "bytes": 567035
+ },
+ {
+  "name": "zelnick",
+  "file": "zelnick.jpg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Strauss_Zelnick%2C_2015_%2816339090774%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "bytes": 273173
+ },
+ {
+  "name": "gamestop-store",
+  "file": "gamestop-store.jpg",
+  "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/GameStop_store_Ypsilanti.JPG/1920px-GameStop_store_Ypsilanti.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "bytes": 434329
+ }
+]
