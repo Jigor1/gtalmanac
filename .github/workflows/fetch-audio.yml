@@ -1,0 +1,41 @@
+# GTAlmanac audio bridge.
+# Claude drops a file queue/<name>.url (first line = ElevenLabs MP3 link).
+# This job downloads it to audio/<name>.mp3, removes the queue file and commits.
+name: fetch-audio
+on:
+  push:
+    branches: [main]
+    paths: ['queue/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: fetch-audio
+  cancel-in-progress: false
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download queued audio
+        run: |
+          shopt -s nullglob
+          mkdir -p audio
+          for f in queue/*.url; do
+            name=$(basename "$f" .url)
+            url=$(head -n1 "$f" | tr -d '\r')
+            if curl -fsSL --retry 3 "$url" -o "audio/$name.mp3"; then
+              echo "ok: $name"
+              git rm -q "$f"
+            else
+              echo "failed: $name"
+            fi
+          done
+      - name: Commit
+        run: |
+          git config user.name "gtalmanac-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A audio queue
+          git diff --cached --quiet && exit 0
+          git commit -m "audio: fetched from queue"
+          for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 3; done
