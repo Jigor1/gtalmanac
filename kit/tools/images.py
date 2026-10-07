@@ -25,7 +25,7 @@ rep = f"images/{ep}/_report.json"
 if os.path.exists(f"{repo}/{rep}"):
     git("rm", "-q", "-r", f"images/{ep}")
 json.dump({"items": items}, open(f"{repo}/img/{ep}.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-git("add", "-A", "img", "images")
+git("add", "-A", *[p for p in ("img", "images") if os.path.exists(f"{repo}/{p}")])
 git("-c", "user.name=Claude", "-c", "user.email=noreply@anthropic.com", "commit", "-q", "-m",
     f"img: {ep}\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>")
 for _ in range(3):
