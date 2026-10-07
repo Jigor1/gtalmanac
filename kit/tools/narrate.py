@@ -1,12 +1,12 @@
 """Get a narration MP3 through the GitHub narrator robot (.github/workflows/narrate.yml).
-usage: python3 narrate.py <name> <script.txt> <out.mp3> [--repo /home/claude/gtalmanac]
+usage: python3 narrate.py <name> <script.txt> <out.mp3> [--repo <clone>]  (default: the clone this file is in)
 Writes tts/<name>.json with the exact script text, pushes it, then waits (up to ~4 min)
 for audio/<name>.mp3 (or audio/<name>.error.txt) and copies the MP3 to <out.mp3>.
 Each run spends ElevenLabs credits: never call it twice for the same script."""
 import json, os, subprocess, sys, time, shutil
 
 args = sys.argv[1:]
-repo = "/home/claude/gtalmanac"
+repo = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))  # the clone this tool lives in
 if "--repo" in args:
     i = args.index("--repo"); repo = args[i + 1]; del args[i:i + 2]
 name, script, out = args

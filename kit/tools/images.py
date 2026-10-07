@@ -1,5 +1,5 @@
 """Download images through the GitHub image robot (.github/workflows/fetch-images.yml).
-usage: python3 images.py <episode> <items.json> <dest_dir> [--repo /home/claude/gtalmanac]
+usage: python3 images.py <episode> <items.json> <dest_dir> [--repo <clone>]  (default: the clone this file is in)
 items.json = [{"name": "memo", "page": "https://article..."},      # page -> its og:image
               {"name": "klima", "wiki": "Martin Klíma"},           # Wikipedia main photo (lang: "en" default)
               {"name": "box", "url": "https://.../box.jpg"},       # direct image link
@@ -10,7 +10,7 @@ never put signed URLs, tokens or keys in a job (the repository is public)."""
 import json, os, subprocess, sys, time, shutil
 
 args = sys.argv[1:]
-repo = "/home/claude/gtalmanac"
+repo = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))  # the clone this tool lives in
 if "--repo" in args:
     i = args.index("--repo"); repo = args[i + 1]; del args[i:i + 2]
 ep, items_file, dest = args
