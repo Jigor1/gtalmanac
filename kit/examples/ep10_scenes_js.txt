@@ -1,0 +1,87 @@
+// ===== VIDEO-SPECIFIC SCENES (JS) START =====
+const WD = __WORDS__;
+const w = i => WD[i].s;
+const TOPIC_HTML = 'USED PS5 PRO <span class="pk">$1,499</span>';
+const SC = [0, w(15), w(38), w(52), w(60), w(69), w(81), w(102), w(130), w(144), 999];
+const SLAMS = [w(8), w(51), w(59), w(61), w(94), w(141)];
+const FOOT = [];
+const money = v => '$' + v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+function s1(t) { const E = SC[1];
+  A($('a_ps'), t, -0.4, E, { s0: .94, dy: 0, d: .5 });
+  A($('a_tag'), t, -0.3, E, { back: 1, s0: .6, dy: 0 });
+  const pu = P(t, w(3), .45); $('a_tag').style.transform += ` scale(${(1 + .12 * Math.sin(Math.PI * pu)).toFixed(3)})`;
+  A($('a_used'), t, w(8), E, { s0: 2.2, d: .16, dy: 0, fast: 1, rot: -10 });
+  A($('a_thx'), t, w(12), E, { back: 1, s0: .6, dy: 0 });
+}
+const STEPS = [[25, 699, 'PS5 Pro · 2024 launch', 300], [29, 749, 'PS5 Pro · 2025', 340], [36, 899, 'PS5 Pro · new today', 410]];
+function s2(t) { const E = SC[2];
+  A($('b_tag'), t, w(16), E, { back: 1, s0: .5, dy: 0 });
+  A($('b_st'), t, w(15), E, { dy: 0, d: .2 }); A($('b_base'), t, w(15), E, { dy: 0 });
+  let val = 699, lab = 'PS5 Pro · 2024 launch', prev = 699;
+  STEPS.forEach(([wi, v, l, h], i) => { const x = eio(P(t, w(wi), .5));
+    $('b_b' + (i + 1)).style.height = (h * x) + 'px'; $('b_b' + (i + 1)).firstChild.style.opacity = x > .5 ? 1 : 0;
+    if (t >= w(wi)) { val = Math.round(lerp(prev, v, x)); lab = l; } prev = v; });
+  $('b_v').textContent = '$' + val; $('b_k').textContent = lab;
+  let bump = 0; STEPS.forEach(([wi]) => { const p = P(t, w(wi), .4); if (p > 0 && p < 1) bump = Math.sin(Math.PI * p); });
+  $('b_tag').firstChild.style.transform = `rotate(-3deg) scale(${(1 + .1 * bump).toFixed(3)})`;
+  $('b_b4').style.opacity = t >= w(36) + .4 ? 1 : 0;
+  [[1, 16], [2, 28], [3, 31], [4, 37]].forEach(([i, wi]) => A($('b_l' + i), t, w(wi), E, { dy: 16 }));
+}
+function s3(t) { const E = SC[3];
+  A($('c_chip'), t, w(38), E, { back: 1, s0: .6, dy: 0 });
+  A($('c_memo'), t, w(40), E, { back: 1, s0: .85, dy: 30, d: .45 });
+  A($("c_lk"), t, w(40) + .35, E, { s0: 2, d: .16, dy: 0, fast: 1, rot: -8 });
+  $('c_hl').style.opacity = cl(P(t, w(44), .3));
+  A($('c_used'), t, w(51), E, { s0: 2.2, d: .16, dy: 0, fast: 1, rot: -6 });
+}
+function s4(t) { const E = SC[4];
+  A($('d_chip'), t, w(52), E, { back: 1, s0: .6, dy: 0 });
+  A($('d_memo'), t, w(53), E, { back: 1, s0: .85, dy: 30, d: .45 });
+  $('d_hl').style.width = (262 * eo(P(t, w(57), .7))) + 'px';
+  A($('d_q'), t, w(59), E, { s0: 2.2, d: .16, dy: 0, fast: 1, rot: -4 });
+}
+function s5(t) { const E = SC[5];
+  A($('e_cols'), t, w(60), E, { dy: 0, d: .2 }); A($('e_base'), t, w(60), E, { dy: 0 });
+  A($('e_l1'), t, w(60), E, { dy: 16 }); A($('e_l2'), t, w(60), E, { dy: 16 });
+  const x1 = eio(P(t, w(60), .5)), x2 = eio(P(t, w(60) + .25, .6));
+  $('e_b1').style.height = (410 * x1) + 'px'; $('e_b2').style.height = (684 * x2) + 'px';
+  A($('e_gap'), t, w(61), E, { s0: 2.2, d: .16, dy: 0, fast: 1, rot: -6 });
+}
+function s6(t) { const E = SC[6];
+  A($('f_t'), t, w(69), E, { back: 1, s0: .6, dy: 0 });
+  A($('f_n1'), t, w(70), E, { back: 1, s0: .5, dy: 0 }); A($('f_n2'), t, w(70) + .15, E, { back: 1, s0: .5, dy: 0 }); A($('f_n3'), t, w(76), E, { back: 1, s0: .5, dy: 0 });
+  [['f_a1', w(72)], ['f_a2', w(76) + .2]].forEach(([id, a]) => { const el = $(id); el.style.visibility = t >= a && t < E ? 'visible' : 'hidden'; el.style.transform = `scaleX(${eo(P(t, a, .4)).toFixed(3)})`; });
+  A($('f_p1'), t, w(74), E, { back: 1, s0: .6, dy: 0 });
+  A($('f_p2'), t, w(77), E, { back: 1, s0: .6, dy: 0 });
+  A($('f_gap'), t, w(79), E, { back: 1, s0: .6, dy: 0 });
+}
+function s7(t) { const E = SC[7];
+  A($('g_why'), t, w(81), w(82), { back: 1, s0: .5, dy: 0, d: .3, od: .15 });
+  A($('g_art'), t, w(82), E, { back: 1, s0: .85, dy: 30 });
+  A($('g_date'), t, w(86), E, { s0: 1.8, d: .2, dy: 0, fast: 1, rot: -4 });
+  A($('g_shelf'), t, w(89), E, { back: 1, s0: .85, dy: 30 });
+  A($('g_so'), t, w(94), E, { s0: 2.2, d: .16, dy: 0, fast: 1, rot: -6 });
+}
+function s8(t) { const E = SC[8];
+  A($('h_chip'), t, w(102), E, { back: 1, s0: .6, dy: 0 });
+  A($('h_t'), t, w(108), E, { back: 1, s0: .7, dy: 0 });
+  A($('h_sub'), t, w(113), E, { dy: 16 });
+  A($('h_split'), t, w(116), E, { back: 1, s0: .85, dy: 30, d: .45 });
+  A($('h_if'), t, w(118), E, { back: 1, s0: .6, dy: 0 });
+}
+function s9(t) { const E = SC[9];
+  A($('i_t'), t, w(130), E, { back: 1, s0: .6, dy: 0 });
+  A($('i_a'), t, w(130) + .2, E, { back: 1, s0: .6, dy: 0, rot: -3 });
+  A($('i_b'), t, w(132), E, { back: 1, s0: .6, dy: 0, rot: 3 });
+  A($('i_eq'), t, w(136), E, { dy: 0 });
+  A($('i_tot'), t, w(141), E, { s0: 2, d: .18, dy: 0, fast: 1, rot: -3 });
+  $('i_v').textContent = money(1579.98 * eio(P(t, w(141), .8)));
+}
+function s10(t) { const E = SC[10];
+  A($('j_warn'), t, w(144), E, { back: 1, s0: .6, dy: 0 });
+  A($('j_ps'), t, w(144) + .2, E, { back: 1, s0: .8, dy: 30, d: .45 });
+  A($('j_tag'), t, w(158), E, { back: 1, s0: .5, dy: 0 });
+  A($('j_a'), t, w(156), E, { back: 1, s0: .5, dy: 0 }); A($('j_b'), t, w(156) + .2, E, { back: 1, s0: .5, dy: 0 });
+}
+const SCENES = [s1, s2, s3, s4, s5, s6, s7, s8, s9, s10];
+// ===== VIDEO-SPECIFIC SCENES (JS) END =====

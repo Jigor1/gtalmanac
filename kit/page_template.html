@@ -1,0 +1,145 @@
+<title>GTAlmanac Ep. {{EP}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0B0716;
+    --surface: #160D26;
+    --line: #2E2147;
+    --text: #F4EEFF;
+    --muted: #A99BC4;
+    --pink: #FF3D8B;
+    --cyan: #22E4D6;
+    --yellow: #FFD23F;
+    --ink-on-pink: #FFFFFF;
+    --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+    --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text); font: 400 15px/1.55 var(--body);
+    padding-inline: 16px; padding-block: 24px 48px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; display: grid; gap: 28px; }
+  header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+  .brand { font: 400 34px/1 var(--display); letter-spacing: .02em; margin: 0; }
+  .brand span { color: var(--pink); }
+  .ep { color: var(--muted); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 12px; }
+  .grid { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 28px; align-items: start; }
+  @media (max-width: 760px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+  .phone { width: 100%; max-width: 340px; aspect-ratio: 9 / 16; border-radius: 22px; overflow: hidden;
+    border: 1px solid var(--line); background: #000; justify-self: center; }
+  .phone video { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .stack { display: grid; gap: 22px; }
+  h2 { font: 400 22px/1.1 var(--display); letter-spacing: .03em; margin: 0; text-transform: uppercase; text-wrap: balance; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; }
+  button { font: 800 14px/1 var(--body); letter-spacing: .04em; border-radius: 12px; cursor: pointer;
+    padding: 14px 18px; border: 2px solid transparent; }
+  button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+  .primary { background: var(--pink); color: var(--ink-on-pink); }
+  .ghost { background: transparent; color: var(--text); border-color: var(--line); }
+  .ghost:hover { border-color: var(--cyan); }
+  .note { color: var(--muted); font-size: 13px; margin: 0; min-height: 1.4em; }
+  .kit { display: grid; gap: 12px; }
+  .item { border: 1px solid var(--line); background: var(--surface); border-radius: 14px; padding: 14px 16px;
+    display: grid; gap: 10px; }
+  .label { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--cyan); }
+  .text { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .item button { justify-self: start; padding: 9px 14px; font-size: 12px; }
+  .src { color: var(--muted); font-size: 12px; margin: 0; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1 class="brand">GT<span>A</span>LMANAC</h1>
+    <div class="ep">Ep. {{EP}} · {{LABEL}} · {{DUR}}</div>
+  </header>
+
+  <div class="grid">
+    <div class="phone"><video id="vid" controls playsinline preload="metadata" poster="capa.png" src="video.mp4"></video></div>
+
+    <div class="stack">
+      <section class="stack" aria-labelledby="dl">
+        <h2 id="dl">Baixar</h2>
+        <div class="row">
+          <button class="primary" id="btnVideo" type="button">Baixar vídeo (MP4)</button>
+          <button class="ghost" id="btnCover" type="button">Baixar capa (PNG)</button>
+          <button class="ghost" id="btnCover2" type="button">Capa alternativa</button>
+        </div>
+        <p class="note" id="status" role="status"></p>
+      </section>
+
+      <section class="kit" aria-labelledby="post">
+        <h2 id="post">Para postar</h2>
+        <div class="item">
+          <div class="label">Título 1</div>
+          <p class="text" id="t1">{{T1}}</p>
+          <button class="ghost" type="button" data-copy="t1">Copiar</button>
+        </div>
+        <div class="item">
+          <div class="label">Título 2</div>
+          <p class="text" id="t2">{{T2}}</p>
+          <button class="ghost" type="button" data-copy="t2">Copiar</button>
+        </div>
+        <div class="item">
+          <div class="label">Título 3</div>
+          <p class="text" id="t3">{{T3}}</p>
+          <button class="ghost" type="button" data-copy="t3">Copiar</button>
+        </div>
+        <div class="item">
+          <div class="label">Legenda + hashtags</div>
+          <p class="text" id="cap">{{CAPTION}}</p>
+          <button class="ghost" type="button" data-copy="cap">Copiar</button>
+        </div>
+        <p class="src">Fan channel · not affiliated with Rockstar Games.</p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+  const status = document.getElementById('status');
+  const say = (msg) => { status.textContent = msg; };
+  let downloadsP = null;
+  function getDownloads() {
+    if (!downloadsP) downloadsP = (window.claude && window.claude.use) ? window.claude.use('downloads') : Promise.resolve(null);
+    return downloadsP;
+  }
+  async function saveFile(url, filename, btn) {
+    btn.disabled = true;
+    say('Preparando o arquivo…');
+    try {
+      const dl = await getDownloads();
+      if (!dl) { say('O download não está disponível nesta tela. Abra este link no navegador do computador ou do celular.'); return; }
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('fetch');
+      const blob = await res.blob();
+      const r = await dl.save({ filename, data: blob });
+      say(r.status === 'saved' ? 'Pronto. Confira a pasta de downloads (ou a tela de compartilhar, no iPhone).' : 'Arquivo enviado.');
+    } catch (e) {
+      const code = e && e.code;
+      if (code === 'declined') say('Download cancelado. Toque no botão de novo quando quiser.');
+      else if (code === 'rate_limited') say('Já existe um download aberto. Conclua ou feche e tente de novo.');
+      else say('Não foi possível baixar aqui. Abra este link no navegador e tente de novo.');
+    } finally { btn.disabled = false; }
+  }
+  document.getElementById('btnVideo').addEventListener('click', (e) => saveFile('video.mp4', 'gtalmanac-ep{{EP}}-{{SLUG}}.mp4', e.currentTarget));
+  document.getElementById('btnCover').addEventListener('click', (e) => saveFile('capa.png', 'gtalmanac-ep{{EP}}-capa.png', e.currentTarget));
+  document.getElementById('btnCover2').addEventListener('click', (e) => saveFile('capa2.png', 'gtalmanac-ep{{EP}}-capa-alt.png', e.currentTarget));
+
+  document.querySelectorAll('[data-copy]').forEach((b) => b.addEventListener('click', () => {
+    const el = document.getElementById(b.dataset.copy);
+    const done = () => { b.textContent = 'Copiado'; setTimeout(() => { b.textContent = 'Copiar'; }, 1500); };
+    try {
+      navigator.clipboard.writeText(el.textContent).then(done, () => selectText(el));
+    } catch (_) { selectText(el); }
+  }));
+  function selectText(el) {
+    const r = document.createRange(); r.selectNodeContents(el);
+    const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    say('Texto selecionado. Use copiar do seu aparelho.');
+  }
+</script>

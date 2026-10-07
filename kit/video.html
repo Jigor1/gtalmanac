@@ -1,0 +1,299 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(node_modules/@fontsource/anton/files/anton-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Inter;src:url(node_modules/@fontsource/inter/files/inter-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:Inter;src:url(node_modules/@fontsource/inter/files/inter-latin-700-normal.woff2) format('woff2');font-weight:700}
+@font-face{font-family:Inter;src:url(node_modules/@fontsource/inter/files/inter-latin-800-normal.woff2) format('woff2');font-weight:800}
+@font-face{font-family:Inter;src:url(node_modules/@fontsource/inter/files/inter-latin-900-normal.woff2) format('woff2');font-weight:900}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0A0614;color:#fff;font-family:Inter}
+#root{position:absolute;inset:0;overflow:hidden}
+#bg{position:absolute;inset:0;background:linear-gradient(180deg,#07040F 0%,#120824 45%,#2A0E3F 100%)}
+.glow{position:absolute;width:1100px;height:1100px;border-radius:50%;filter:blur(40px)}
+#glowA{left:-420px;top:-160px;background:radial-gradient(circle,rgba(255,61,139,.30),rgba(255,61,139,0) 65%)}
+#glowB{left:460px;top:620px;background:radial-gradient(circle,rgba(34,228,214,.20),rgba(34,228,214,0) 65%)}
+#sun{position:absolute;left:140px;top:1470px;width:800px;height:800px;border-radius:50%;opacity:.2;
+ background:linear-gradient(0deg,#FF8A3D 0%,#FF3D8B 55%,#9B2AE0 100%);
+ -webkit-mask-image:linear-gradient(180deg,#000 0 40%,transparent 40% 43%,#000 43% 52%,transparent 52% 56%,#000 56% 63%,transparent 63% 68%,#000 68% 74%,transparent 74% 80%,#000 80%)}
+#floor{position:absolute;left:-400px;width:1880px;top:1600px;height:520px;opacity:.3;transform-origin:50% 0;transform:perspective(420px) rotateX(62deg);
+ background-image:linear-gradient(rgba(255,79,154,.55) 3px,transparent 3px),linear-gradient(90deg,rgba(255,79,154,.55) 3px,transparent 3px);background-size:100px 60px,100px 60px;
+ -webkit-mask-image:linear-gradient(180deg,transparent,#000 35%)}
+#vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 42%,rgba(0,0,0,0) 55%,rgba(0,0,0,.6) 100%)}
+#scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 2px,transparent 2px 5px)}
+#flash{position:absolute;inset:0;background:#fff;opacity:0}
+#stage{position:absolute;inset:0}
+.abs{position:absolute;left:0;width:1080px;text-align:center;visibility:hidden}
+.bx{position:absolute;visibility:hidden}
+.pk{color:#FF4F9A}.tl{color:#22E4D6}.yl{color:#FFD23F}
+.h{font-family:Anton;font-weight:400;line-height:1;text-transform:uppercase}
+.num{font-family:Inter;font-weight:900;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-5px}
+.lbl{font-family:Inter;font-weight:800;letter-spacing:3px;text-transform:uppercase}
+.mut{color:rgba(255,255,255,.72)}
+.sh{text-shadow:0 10px 40px rgba(0,0,0,.55)}
+.chip{display:inline-block;font:800 38px/1 Inter;letter-spacing:4px;padding:16px 30px 17px;border-radius:999px;border:4px solid currentColor;text-transform:uppercase}
+.chip.tl{background:rgba(34,228,214,.12)}.chip.pk{background:rgba(255,79,154,.14)}
+.chip.wh{color:#fff;border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.08)}
+.pill{display:inline-block;font:800 30px/1 Inter;letter-spacing:3px;color:rgba(255,255,255,.92);padding:14px 28px 15px;border-radius:999px;background:rgba(10,6,20,.55);border:3px solid rgba(255,255,255,.18)}
+.brand{font-family:Anton;font-weight:400;font-size:36px;letter-spacing:2px;color:#fff;vertical-align:-2px}
+.hsep{display:inline-block;width:3px;height:30px;background:rgba(255,255,255,.3);margin:0 18px;vertical-align:-5px}
+.card{display:inline-block;width:800px;padding:36px 0 34px;border:6px solid #FF4F9A;border-radius:44px;background:rgba(255,79,154,.10);box-shadow:0 0 80px rgba(255,79,154,.35),inset 0 0 40px rgba(255,79,154,.15)}
+.ppill{display:inline-block;padding:10px 30px 14px;border-radius:26px;border:5px solid;background:rgba(10,6,20,.72)}
+.stamp{display:inline-block;font-family:Anton;line-height:1.02;text-transform:uppercase;padding:18px 46px 24px;border:8px solid currentColor;border-radius:22px;background:rgba(10,6,20,.8)}
+.gc{position:absolute;width:136px;height:176px;border-radius:18px;border:4px solid rgba(255,255,255,.22);background:rgba(255,255,255,.04);box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:44px;color:rgba(255,255,255,.2);visibility:hidden}
+.gc::before{content:"";position:absolute;left:14px;right:14px;top:14px;height:10px;border-radius:5px;background:currentColor;opacity:.45}
+.gc.on{background:linear-gradient(#FF4F9A,#C2266B);border-color:#FFB3D1;color:#fff;box-shadow:0 0 36px rgba(255,79,154,.6)}
+.gc.std{border-color:#22E4D6;color:#22E4D6;background:rgba(34,228,214,.10)}
+#foot{top:1198px;padding:0 120px;box-sizing:border-box;font:600 27px/1.38 Inter;color:rgba(255,255,255,.66);visibility:visible}
+#cap{top:1292px;padding:0 100px;box-sizing:border-box;font-family:Anton;font-size:96px;line-height:1.1;text-transform:uppercase;color:#fff;visibility:visible}
+#cap .w{display:inline-block;padding:0 14px 6px;margin:0 -10px;border-radius:16px}
+#cap .w.k{color:#FFD23F}
+#cap .w.on{background:#FF3D8B;color:#fff}
+</style></head>
+<body><div id="root">
+<div id="bg"></div><div id="glowA" class="glow"></div><div id="glowB" class="glow"></div>
+<div id="sun"></div><div id="floor"></div>
+<div id="stage">
+  <div class="abs" id="hdr" style="top:196px;visibility:visible"><span class="pill"><span class="brand">GT<span class="pk">A</span>LMANAC</span><span class="hsep"></span><span id="topic"></span></span></div>
+
+  <!-- ===== VIDEO-SPECIFIC SCENES (HTML) START ===== -->
+  <!-- S1 hook: covers side by side -->
+  <div class="bx" id="s1g5" style="left:70px;top:333px;width:430px"><img src="assets/gta5.png" style="width:100%;display:block;border-radius:6px"></div>
+  <div class="bx" id="s1g6" style="left:580px;top:323px;width:430px"><img src="assets/gta6.png" style="width:100%;display:block"></div>
+  <div class="bx" id="s1vs" style="left:465px;top:525px;width:150px;height:150px;border-radius:50%;background:#FF3D8B;border:6px solid #fff;box-sizing:border-box;display:flex;align-items:center;justify-content:center;box-shadow:0 0 50px rgba(255,61,139,.75),0 12px 30px rgba(0,0,0,.5)"><span class="h" style="font-size:74px;color:#fff;margin-top:4px">VS</span></div>
+  <div class="bx" id="s1p5" style="left:70px;width:430px;top:902px;text-align:center"><div class="ppill" style="border-color:#22E4D6"><span class="num" style="font-size:78px;color:#fff;letter-spacing:-3px">$59.99</span></div><div class="lbl tl" style="font-size:26px;margin-top:12px">2013 launch</div></div>
+  <div class="bx" id="s1p6" style="left:580px;width:430px;top:902px;text-align:center"><div class="ppill" style="border-color:#FF4F9A"><span class="num yl" style="font-size:78px;letter-spacing:-3px">$79.99</span></div><div class="lbl pk" style="font-size:26px;margin-top:12px">2026 standard</div></div>
+  <div class="abs" id="s1c" style="top:1086px"><span class="stamp tl" style="font-size:76px;padding:12px 40px 16px">Cheaper than GTA 5?</span></div>
+
+  <!-- S2 inflation -->
+  <div class="abs" id="s2a" style="top:380px"><span class="chip tl">September 2013</span></div>
+  <div class="abs lbl sh" id="s2b" style="top:510px;font-size:50px">GTA <span class="tl">5</span> launch price</div>
+  <div class="abs lbl sh" id="s2b2" style="top:510px;font-size:50px">GTA <span class="tl">5</span> in today's dollars</div>
+  <div class="abs num sh" id="s2c" style="top:590px;font-size:250px">$59.99</div>
+  <div class="abs" id="s2d" style="top:900px"><span class="chip pk">&uarr; +43% inflation since 2013</span></div>
+
+  <!-- S3 bars -->
+  <div class="abs lbl mut" id="s3a" style="top:370px;font-size:40px">What it costs in today's dollars</div>
+  <div class="abs" id="s3b" style="top:350px"><span class="stamp" style="font-size:84px;color:#1A0B2E;background:#FFD23F;border-color:#FFD23F;padding:10px 36px 14px">Cheaper in real terms</span></div>
+  <div class="bx" id="s3i" style="left:150px;width:780px;top:1052px;height:4px;background:rgba(255,255,255,.4)"></div>
+  <div class="bx" id="s3c" style="left:180px;width:300px;border-radius:20px 20px 0 0;background:linear-gradient(#22E4D6,#0C8C85);box-shadow:0 0 50px rgba(34,228,214,.35)"></div>
+  <div class="bx" id="s3d" style="left:600px;width:300px;border-radius:20px 20px 0 0;background:linear-gradient(#FF4F9A,#B01F5C);box-shadow:0 0 50px rgba(255,79,154,.4)"></div>
+  <div class="bx num" id="s3e" style="left:180px;width:300px;text-align:center;font-size:74px;letter-spacing:-3px;color:#05302D">$86</div>
+  <div class="bx num" id="s3f" style="left:600px;width:300px;text-align:center;font-size:74px;letter-spacing:-3px;color:#fff">$79.99</div>
+  <div class="bx" id="s3g" style="left:180px;width:300px;top:1068px;text-align:center"><div class="h" style="font-size:64px">GTA <span class="tl">5</span></div><div class="mut" style="font:600 28px Inter;margin-top:6px">$59.99 in 2013</div></div>
+  <div class="bx" id="s3h" style="left:600px;width:300px;top:1068px;text-align:center"><div class="h" style="font-size:64px">GTA <span class="pk">6</span></div><div class="mut" style="font:600 28px Inter;margin-top:6px">Standard, 2026</div></div>
+  <div class="bx" id="s3j" style="left:160px;width:760px;top:571px;height:0;border-top:5px dashed #FFD23F"></div>
+  <div class="bx h yl sh" id="s3k" style="left:600px;width:300px;top:484px;text-align:center;font-size:64px">$6 less</div>
+
+  <!-- S4 twist -->
+  <div class="abs" id="s4a" style="top:620px"><span class="h pk" style="font-size:230px;display:inline-block">The twist</span></div>
+  <div class="abs" id="s4b" style="top:360px"><span class="chip wh">Sensor Tower estimate</span></div>
+  <div class="abs h sh" id="s4c" style="top:450px;font-size:140px">9 IN 10</div>
+  <div id="grid"></div>
+  <div class="abs" id="s4d" style="top:1030px"><span class="chip pk" style="font-size:32px;margin:0 8px">Ultimate &middot; $99.99</span><span class="chip tl" style="font-size:32px;margin:0 8px">Standard &middot; $79.99</span></div>
+
+  <!-- S5 pre-orders -->
+  <div class="abs" id="s5a" style="top:360px"><span class="chip tl">By late August 2026</span></div>
+  <div class="abs" id="s5a2" style="top:360px"><span class="chip pk">Release: Nov 19, 2026</span></div>
+  <div class="abs lbl sh" id="s5b" style="top:470px;font-size:46px">GTA <span class="pk">6</span> pre-orders <span class="mut">(est.)</span></div>
+  <div class="abs num sh" id="s5c" style="top:540px;font-size:240px">4.6M</div>
+  <div class="abs lbl mut" id="s5d" style="top:810px;font-size:38px">Pre-order revenue (est.)</div>
+  <div class="abs num yl sh" id="s5e" style="top:862px;font-size:150px">~$446M</div>
+  <div class="bx" id="s5f" style="left:140px;width:800px;top:1036px">
+    <div style="position:relative;height:28px;border-radius:14px;background:rgba(255,255,255,.12);overflow:hidden"><div id="s5fill" style="position:absolute;left:0;top:0;bottom:0;width:0;border-radius:14px;background:linear-gradient(90deg,#FF8A3D,#FFD23F)"></div></div>
+    <div style="display:flex;justify-content:space-between;font:700 28px Inter;color:rgba(255,255,255,.6);margin-top:10px"><span>$0</span><span>$500M = half a billion</span></div>
+  </div>
+
+  <!-- S6 GTA 5 day one -->
+  <div class="abs" id="s6a" style="top:360px"><span class="chip tl">For comparison</span></div>
+  <div class="abs h sh" id="s6b" style="top:455px;font-size:120px">GTA <span class="tl">5</span> &middot; Day one</div>
+  <div class="abs lbl mut" id="s6c" style="top:592px;font-size:34px">Sept 17, 2013 &middot; worldwide</div>
+  <div class="abs num sh" id="s6d" style="top:650px;font-size:220px">$800M</div>
+  <div class="abs num yl sh" id="s6f" style="top:885px;font-size:170px">~$1.14B</div>
+  <div class="abs" id="s6e" style="top:1080px"><span class="chip pk">In today's money</span></div>
+
+  <!-- S7 CTA -->
+  <div class="abs h sh" id="s7a" style="top:350px;font-size:170px">How fast<span class="pk">?</span></div>
+  <div class="bx lbl" id="s7b" style="left:120px;top:585px;font-size:32px">GTA <span class="tl">5</span> &middot; day one <span class="mut">(today's $)</span></div>
+  <div class="bx" id="s7c" style="left:120px;top:638px;height:100px;width:0;border-radius:20px;overflow:hidden;background:linear-gradient(90deg,#0C8C85,#22E4D6);box-shadow:0 0 50px rgba(34,228,214,.3)"><div class="h" style="position:absolute;right:26px;top:50%;transform:translateY(-50%);font-size:66px;color:#062B2A;white-space:nowrap">$1.14B</div></div>
+  <div class="bx lbl" id="s7d" style="left:120px;top:782px;font-size:32px">GTA <span class="pk">6</span> &middot; pre-orders so far <span class="mut">(est.)</span></div>
+  <div class="bx" id="s7e" style="left:120px;top:835px;width:840px;height:100px;box-sizing:border-box;border:4px dashed rgba(255,79,154,.65);border-radius:20px">
+    <div id="s7fill" style="position:absolute;left:-4px;top:-4px;bottom:-4px;width:0;border-radius:20px;background:linear-gradient(90deg,#B01F5C,#FF4F9A);box-shadow:0 0 40px rgba(255,79,154,.45)"></div>
+    <div id="s7val" class="h" style="position:absolute;top:50%;transform:translateY(-50%);font-size:66px;white-space:nowrap">$446M</div>
+    <div id="s7q" class="h pk" style="position:absolute;right:30px;top:50%;font-size:90px;transform:translateY(-50%)">?</div>
+  </div>
+  <div class="abs" id="s7g" style="top:1015px;visibility:visible"><span class="chip wh" id="s7g1" style="margin:0 8px;visibility:hidden">Day 1?</span><span class="chip wh" id="s7g2" style="margin:0 8px;visibility:hidden">Week 1?</span><span class="chip wh" id="s7g3" style="margin:0 8px;visibility:hidden">Before launch?</span></div>
+  <!-- ===== VIDEO-SPECIFIC SCENES (HTML) END ===== -->
+</div>
+<div id="vig"></div><div id="scan"></div>
+<div class="abs" id="foot"></div>
+<div class="abs" id="cap"></div>
+<div id="flash"></div>
+</div>
+<script>
+const CAPS = __CAPS__;
+const DUR = __DUR__;
+window.DUR = DUR;
+const $ = id => document.getElementById(id);
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const eo = x => 1 - Math.pow(1 - cl(x), 3);
+const eb = x => { x = cl(x); const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const eio = x => { x = cl(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const P = (t, a, d) => cl((t - a) / d);
+const lerp = (a, b, x) => a + (b - a) * x;
+function mix(h1, h2, x) { const a = [1,3,5].map(i => parseInt(h1.substr(i,2),16)), b = [1,3,5].map(i => parseInt(h2.substr(i,2),16)); return 'rgb(' + a.map((v,i) => Math.round(lerp(v, b[i], x))).join(',') + ')'; }
+
+function A(e, t, a, end, o = {}) {
+  const d = o.d ?? 0.35, od = o.od ?? 0.22;
+  const ip = P(t, a, d), op = end == null ? 0 : P(t, end - od, od);
+  if (t < a || op >= 1) { e.style.visibility = 'hidden'; e.style.opacity = 0; return 0; }
+  e.style.visibility = 'visible';
+  const ie = o.back ? eb(ip) : eo(ip), oe = eo(op);
+  const s = (o.s0 != null ? lerp(o.s0, 1, ie) : 1) * (1 - 0.06 * oe);
+  const dy = (o.dy ?? 36) * (1 - eo(ip)) - 24 * oe;
+  const dx = (o.dx ?? 0) * (1 - eo(ip));
+  e.style.opacity = cl(ip * (o.fast ? 7 : 2.4)) * (1 - oe);
+  e.style.transform = `translate(${dx}px,${dy}px) scale(${s}) rotate(${o.rot ?? 0}deg)`;
+  return ie;
+}
+
+// caption outline
+(function () { const sh = []; for (let i = 0; i < 16; i++) { const a = i / 16 * Math.PI * 2; sh.push(`${(Math.cos(a) * 6).toFixed(1)}px ${(Math.sin(a) * 6).toFixed(1)}px 0 #000`); } sh.push('0 10px 0 #000', '0 14px 30px rgba(0,0,0,.6)'); const st = document.createElement('style'); st.textContent = `#cap .w{text-shadow:${sh.join(',')}} #cap .w.on{text-shadow:0 5px 0 rgba(0,0,0,.35)}`; document.head.appendChild(st); })();
+
+// ===== VIDEO-SPECIFIC SCENES (JS) START =====
+const WD = __WORDS__;            // word timings from words.json (injected by build.py)
+const w = i => WD[i].s;          // w(i) = start time of spoken word i -> key every entrance to a word
+const TOPIC_HTML = '<span class="pk">GTA 6</span> VS <span class="tl">GTA 5</span>';
+const SC = [0, 7.25, 17.07, 23.57, 32.85, 44.08, 52.28, 999];
+const SLAMS = [4.76, 21.71, 41.87];
+const FOOT = [];  // optional on-screen notes: [start, end, text]. Off by default since Oct 2026 (no sources on screen).
+// grid cards
+const cards = [];
+for (let i = 0; i < 10; i++) { const c = document.createElement('div'); c.className = 'gc'; c.style.left = (148 + (i % 5) * 162) + 'px'; c.style.top = (620 + Math.floor(i / 5) * 202) + 'px'; $('stage').appendChild(c); cards.push(c); }
+
+function s1(t) { const E = SC[1];
+  const inP = eo(P(t, 0, .6)), op = eo(P(t, E - .22, .22));
+  const g5 = $('s1g5'), g6 = $('s1g6');
+  const glow6 = t < 4.76 ? eo(P(t, .1, .4)) : lerp(1, .45, eo(P(t, 4.76, .3)));
+  const glow5 = eo(P(t, 4.9, .35));
+  const b5 = t < 4.76 ? .55 : lerp(.55, 1, eo(P(t, 4.76, .3)));
+  const op0 = cl(.5 + 1.4 * P(t, 0, .4)) * (1 - op);
+  [[g5, -1, glow5, b5, '34,228,214'], [g6, 1, glow6, 1, '255,79,154']].forEach(([g, sgn, gl, b, rgb]) => {
+    g.style.visibility = op >= 1 ? 'hidden' : 'visible'; g.style.opacity = op0;
+    const s = (1 + .08 * (1 - inP)) * (1 + .045 * gl);
+    g.style.transform = `translate(${(sgn * 50 * (1 - inP)).toFixed(1)}px,${(-24 * op).toFixed(1)}px) scale(${s.toFixed(4)}) rotate(${sgn * 3}deg)`;
+    g.firstChild.style.filter = `brightness(${b.toFixed(3)}) drop-shadow(0 0 ${(10 + 30 * gl).toFixed(0)}px rgba(${rgb},${(.85 * gl).toFixed(3)})) drop-shadow(0 18px 30px rgba(0,0,0,.55))`;
+  });
+  A($('s1vs'), t, .25, E, { back: 1, s0: .2, dy: 0, d: .4, rot: 4 * Math.sin(t * 3) });
+  A($('s1p6'), t, 1.9, E, { back: 1, s0: .5, dy: 0, d: .4 });
+  A($('s1p5'), t, 5.25, E, { back: 1, s0: .5, dy: 0, d: .4 });
+  A($('s1c'), t, 4.76, E, { s0: 2.1, d: .16, dy: 0, fast: 1, rot: -3 });
+}
+function s2(t) { const E = SC[2];
+  A($('s2a'), t, 7.62, E);
+  A($('s2b'), t, 8.97, 13.55, { od: .15 });
+  A($('s2b2'), t, 13.5, E, { dy: 20, d: .25 });
+  A($('s2c'), t, 10.56, E, { back: 1, s0: .6, dy: 0, d: .4 });
+  const x = eio(P(t, 13.5, 1.45)), n = $('s2c');
+  n.textContent = x >= 1 ? '~$86' : '$' + lerp(59.99, 85.82, x).toFixed(2);
+  n.style.color = mix('#FFFFFF', '#FFD23F', x);
+  A($('s2d'), t, 13.39, E, { back: 1, s0: .7 });
+}
+function s3(t) { const E = SC[3], base = 1054, k = 5.6;
+  A($('s3a'), t, 17.07, 21.71, { od: .15 });
+  A($('s3b'), t, 21.71, E, { s0: 2, d: .16, dy: 0, fast: 1, rot: -3 });
+  A($('s3i'), t, 17.07, E, { dy: 0 });
+  const x5 = eio(P(t, 17.2, .6)), x6 = eio(P(t, 19.78, .8));
+  const h5 = 85.82 * k * x5, h6 = 79.99 * k * x6;
+  const b5 = $('s3c'), b6 = $('s3d');
+  A(b5, t, 17.1, E, { dy: 0, d: .1 }); b5.style.top = (base - h5) + 'px'; b5.style.height = h5 + 'px';
+  A(b6, t, 19.7, E, { dy: 0, d: .1 }); b6.style.top = (base - h6) + 'px'; b6.style.height = h6 + 'px';
+  A($('s3e'), t, 17.35, E, { dy: 0 }); $('s3e').style.top = (base - h5 + 24) + 'px'; $('s3e').style.opacity *= cl((h5 - 110) / 60);
+  A($('s3f'), t, 19.85, E, { dy: 0 }); $('s3f').style.top = (base - h6 + 24) + 'px'; $('s3f').style.opacity *= cl((h6 - 110) / 60); $('s3f').textContent = '$' + (79.99 * x6).toFixed(2);
+  A($('s3g'), t, 17.15, E); A($('s3h'), t, 19.6, E);
+  A($('s3j'), t, 21.71, E, { dy: 0, dx: -30, d: .3 }); A($('s3k'), t, 21.9, E, { back: 1, s0: .5, dy: 16 });
+}
+function s4(t) { const E = SC[4];
+  const tw = $('s4a'); A(tw, t, 23.57, 25.45, { back: 1, s0: .5, dy: 0, d: .3 });
+  const j = Math.sin(t * 53) * 7, j2 = Math.cos(t * 41) * 6;
+  tw.firstChild.style.textShadow = `${j.toFixed(1)}px 0 rgba(34,228,214,.85), ${(-j2).toFixed(1)}px 0 rgba(255,210,63,.6), 0 10px 40px rgba(0,0,0,.5)`;
+  A($('s4b'), t, 25.84, E);
+  let lit = 0;
+  for (let i = 0; i < 10; i++) { const c = cards[i];
+    A(c, t, 27.44 + i * .035, E, { back: 1, s0: .5, dy: 20, d: .3 });
+    const on = i < 9 && t >= 27.86 + i * (0.74 / 8); if (on) lit++;
+    const std = i == 9 && t >= 28.6;
+    c.className = 'gc' + (on ? ' on' : '') + (std ? ' std' : ''); c.textContent = on ? 'ULT' : (std ? 'STD' : '');
+  }
+  const ct = $('s4c'); A(ct, t, 27.86, E, { back: 1, s0: .7, d: .3, dy: 0 });
+  ct.innerHTML = (t >= 28.6 ? '~9' : String(Math.max(1, lit))) + ' <span class="pk">in</span> 10';
+  A($('s4d'), t, 30.3, E, { back: 1, s0: .7 });
+}
+function s5(t) { const E = SC[5];
+  A($('s5a'), t, 33.59, 41.87, { od: .12 }); A($('s5a2'), t, 41.87, E, { s0: 1.7, d: .18, dy: 0, fast: 1 });
+  A($('s5b'), t, 34.68, E);
+  A($('s5c'), t, 37.0, E, { back: 1, s0: .7, dy: 0 }); $('s5c').textContent = (4.6 * eio(P(t, 37.05, 1.2))).toFixed(1) + 'M';
+  A($('s5d'), t, 39.69, E);
+  A($('s5e'), t, 39.8, E, { back: 1, s0: .7, dy: 0 }); $('s5e').textContent = '~$' + Math.round(446 * eio(P(t, 39.85, 1.2))) + 'M';
+  A($('s5f'), t, 40.15, E); $('s5fill').style.width = (89.2 * eio(P(t, 40.25, 1.0))) + '%';
+}
+function s6(t) { const E = SC[6];
+  A($('s6a'), t, 44.08, E); A($('s6b'), t, 45.4, E, { back: 1, s0: .7 }); A($('s6c'), t, 45.65, E);
+  A($('s6d'), t, 47.0, E, { back: 1, s0: .7, dy: 0 }); $('s6d').textContent = '$' + Math.round(800 * eio(P(t, 47.05, .9))) + 'M';
+  A($('s6f'), t, 49.85, E, { back: 1, s0: .7, dy: 0 });
+  const v = lerp(800, 1144.5, eio(P(t, 49.95, .8)));
+  $('s6f').textContent = '~' + (v < 999.5 ? '$' + Math.round(v) + 'M' : '$' + (v / 1000).toFixed(2) + 'B');
+  A($('s6e'), t, 50.77, E, { back: 1, s0: .7 });
+}
+function s7(t) { const E = SC[7];
+  A($('s7a'), t, 52.28, E, { back: 1, s0: .6, dy: 0 });
+  A($('s7b'), t, 52.4, E, { dx: -40, dy: 0 }); A($('s7d'), t, 52.65, E, { dx: -40, dy: 0 });
+  A($('s7c'), t, 52.45, E, { dy: 0, d: .1 }); $('s7c').style.width = (840 * eio(P(t, 52.5, .6))) + 'px'; $('s7c').firstChild.style.opacity = cl((P(t, 52.5, .6) - .75) * 5);
+  A($('s7e'), t, 52.7, E, { dy: 0, d: .25 });
+  const w = 327.3 * eio(P(t, 52.8, .7)); $('s7fill').style.width = (w + 4) + 'px'; $('s7val').style.left = (w + 22) + 'px'; $('s7val').style.opacity = cl((P(t, 52.8, .7) - .6) * 4);
+  $('s7q').style.transform = `translateY(-50%) scale(${1 + .14 * Math.sin(t * 7)})`;
+  ['s7g1', 's7g2', 's7g3'].forEach((id, i) => A($(id), t, 54.6 + i * .2, E, { back: 1, s0: .5, dy: 0, d: .3 }));
+}
+const SCENES = [s1, s2, s3, s4, s5, s6, s7];
+// ===== VIDEO-SPECIFIC SCENES (JS) END =====
+
+let curFoot = -2;
+function foot(t, opt) { const f = $('foot'); let fi = -1;
+  FOOT.forEach((r, i) => { if (t >= r[0] && t < r[1]) fi = i; });
+  if (opt.cover) fi = -1;
+  if (fi !== curFoot) { curFoot = fi; f.textContent = fi < 0 ? '' : FOOT[fi][2]; }
+  if (fi < 0) { f.style.opacity = 0; return; }
+  const r = FOOT[fi]; f.style.opacity = cl(P(t, r[0], .3)) * (1 - P(t, r[1] - .22, .22));
+}
+let curCap = -2;
+function caps(t, opt) { const cap = $('cap');
+  let ci = -1; for (let i = 0; i < CAPS.length; i++) if (t >= CAPS[i].s - 0.03 && t < CAPS[i].e) ci = i;
+  if (opt.cover) ci = -1;
+  if (ci !== curCap) { curCap = ci; cap.innerHTML = ci < 0 ? '' : CAPS[ci].toks.map(k => `<span class="w${k.k ? ' k' : ''}">${k.t}</span>`).join(' '); }
+  if (ci < 0) return;
+  const c = CAPS[ci], pop = eo(P(t, c.s - 0.03, .12));
+  cap.style.transform = `translateY(${((1 - pop) * 16).toFixed(1)}px) scale(${(.9 + .1 * pop).toFixed(3)})`;
+  cap.style.opacity = cl(pop * 3);
+  const sp = cap.children;
+  for (let j = 0; j < c.toks.length; j++) { const k = c.toks[j];
+    const on = t >= k.s - 0.03 && (j == c.toks.length - 1 || t < c.toks[j + 1].s - 0.03);
+    sp[j].className = 'w' + (k.k ? ' k' : '') + (on ? ' on' : '');
+  }
+}
+function render(t, opt = {}) {
+  $('glowA').style.transform = `translate(${(Math.sin(t * .35) * 70).toFixed(1)}px,${(Math.cos(t * .27) * 60).toFixed(1)}px)`;
+  $('glowB').style.transform = `translate(${(Math.cos(t * .3) * 80).toFixed(1)}px,${(Math.sin(t * .22) * 70).toFixed(1)}px)`;
+  $('floor').style.backgroundPosition = `0 ${(t * 45) % 60}px, 0 0`;
+  $('sun').style.transform = `scale(${(1 + .025 * Math.sin(t * 1.2)).toFixed(4)})`;
+  let sx = 0, sy = 0; for (const s of SLAMS) { const dt = t - s; if (dt >= 0 && dt < .35) { const a = 16 * (1 - dt / .35); sx += a * Math.sin(dt * 95); sy += a * .6 * Math.cos(dt * 80); } }
+  $('stage').style.transform = `translate(${sx.toFixed(1)}px,${sy.toFixed(1)}px)`;
+  let fl = 0; for (const s of SC.slice(1, -1)) { const dt = t - s; if (dt >= 0 && dt < .18) fl = Math.max(fl, .12 * (1 - dt / .18)); }
+  $('flash').style.opacity = fl;
+  SCENES.forEach(f => f(t));
+  foot(t, opt); caps(t, opt);
+}
+window.READY = false;
+$('topic').innerHTML = TOPIC_HTML;
+Promise.all([...[...document.images].map(i => i.decode()), ...['400 100px Anton', '600 30px Inter', '700 30px Inter', '800 30px Inter', '900 100px Inter'].map(f => document.fonts.load(f))])
+  .then(() => document.fonts.ready).then(() => { render(0); window.READY = true; });
+</script>
+</body></html>

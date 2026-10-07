@@ -1,0 +1,96 @@
+// ===== VIDEO-SPECIFIC SCENES (JS) START =====
+const WD = __WORDS__;
+const w = i => WD[i].s;
+const TOPIC_HTML = 'GTA 6 <span class="pk">$400 BOX</span>';
+const SC = [0, w(14), w(30), w(83), w(113), w(125), 999];
+const SLAMS = [w(12), w(78), w(110), w(121)];
+const FOOT = [];
+const money = v => '$' + v.toFixed(2);
+function s1(t) { const E = SC[1];
+  A($('a_box'), t, -0.4, E, { s0: .94, dy: 0, d: .5 });
+  A($('a_tag'), t, -0.3, E, { back: 1, s0: .6, dy: 0 });
+  const pu = P(t, w(4), .45); $('a_tag').style.transform += ` scale(${(1 + .12 * Math.sin(Math.PI * pu)).toFixed(3)})`;
+  const k = eo(P(t, w(12), .3)); $('a_img').style.filter = `grayscale(${k.toFixed(2)}) brightness(${(1 - .45 * k).toFixed(2)})`;
+  A($('a_st'), t, w(12), E, { s0: 2.2, d: .16, dy: 0, fast: 1, rot: -7 });
+}
+function s2(t) { const E = SC[2];
+  A($('b_chip'), t, w(14), E, { back: 1, s0: .6, dy: 0 });
+  A($('b_t'), t, w(17), E, { back: 1, s0: .7, dy: 0 });
+  A($('b_c1'), t, w(21), E, { back: 1, s0: .6, dy: 0 });
+  A($('b_c2'), t, w(25), E, { back: 1, s0: .6, dy: 0 });
+  A($('b_c3'), t, w(28) + .2, E, { back: 1, s0: .6, dy: 0 });
+}
+const ITEMS = [39, 48, 51, 55, 58, 61, 65, 68, 71, 72, 75];
+// photo heroes: [hero id, slot index, in-word, out-word]
+const HW = [39, 48, 51, 55, 58, 61, 65, 68, 71, 72, 75, 76];
+const HEROES = HW.slice(0, 11).map((wi, i) => [i + 1, i + 1, wi, HW[i + 1]]);
+function slotAt(i) { const el = $('c_s' + i); return [el.offsetLeft + 12 + 43, el.offsetTop + 12 + 43]; }
+function s3(t) { const E = SC[3];
+  A($('c_q'), t, w(30), w(38) + .1, { back: 1, s0: .6, dy: 0 });
+  A($('c_box'), t, w(30), E, { back: 1, s0: .6, dy: 40 });
+  A($('c_cntw'), t, w(38), E, { back: 1, s0: .6, dy: 0 });
+  const lp = eo(P(t, w(36), .45)), lid = $('c_lid');
+  lid.style.transform = `translate(${(120 * lp).toFixed(1)}px,${(-170 * lp).toFixed(1)}px) rotate(${(22 * lp).toFixed(1)}deg)`;
+  lid.style.opacity = (1 - lp).toFixed(2);
+  const heroOut = {};
+  HEROES.forEach(([h, si, wi, wo]) => { const el = $('c_h' + h), a = w(wi) - .05, b = w(wo) - .14, di = Math.min(.45, (b - a) * .6);
+    heroOut[si] = b + .3;
+    if (t < a || t >= b + .32 || t >= E) { el.style.visibility = 'hidden'; return; }
+    el.style.visibility = 'visible';
+    if (t < b) { const e = eb(P(t, a, di));
+      el.style.opacity = cl(P(t, a, .1));
+      el.style.transform = `translate(0px,${(400 * (1 - e)).toFixed(1)}px) scale(${lerp(.18, 1, e).toFixed(3)})`;
+    } else { const f = eio(P(t, b, .3)), [sx, sy] = slotAt(si);
+      el.style.opacity = 1;
+      el.style.transform = `translate(${((sx - 540) * f).toFixed(1)}px,${((sy - 605) * f).toFixed(1)}px) scale(${lerp(1, 86 / 520, f).toFixed(3)})`;
+    }
+  });
+  A($('c_stash'), t, w(46), w(48) - .3, { back: 1, s0: .5, dy: 0, rot: -3 });
+  let n = 0;
+  ITEMS.forEach((wi, i) => { const el = $('c_s' + (i + 1)), ph = heroOut[i + 1] != null, a = ph ? heroOut[i + 1] : w(wi) - .08;
+    if (t >= w(wi) - .08) n++;
+    if (t < a || t >= E) { el.style.visibility = 'hidden'; return; }
+    el.style.visibility = 'visible';
+    if (ph) { el.style.opacity = 1; el.style.transform = `scale(${lerp(.9, 1, eb(P(t, a, .25))).toFixed(3)})`; }
+    else { const e = eb(P(t, a, .4)), x = el.offsetLeft + 150, y = el.offsetTop + 59;
+      el.style.opacity = cl(P(t, a, .12));
+      el.style.transform = `translate(${((540 - x) * (1 - e)).toFixed(1)}px,${((990 - y) * (1 - e)).toFixed(1)}px) scale(${lerp(.25, 1, e).toFixed(3)})`; }
+    el.className = 'slot' + (ph ? ' ph' : '') + (t < a + .7 ? ' lit' : '');
+  });
+  $('c_cnt').textContent = n;
+  $('c_cnt').style.color = t >= w(76) ? '#FFD23F' : '#fff';
+  A($('c_s12'), t, w(78), E, { s0: 1.8, d: .18, dy: 0, fast: 1 });
+  A($('c_st'), t, w(78) + .25, E, { s0: 2.2, d: .16, dy: 0, fast: 1, rot: -5 });
+}
+function s4(t) { const E = SC[4];
+  const tw = $('d_tw'); A(tw, t, w(83), w(87), { back: 1, s0: .5, dy: 0, d: .3 });
+  const j = Math.sin(t * 53) * 7, j2 = Math.cos(t * 41) * 6;
+  tw.firstChild.style.textShadow = `${j.toFixed(1)}px 0 rgba(34,228,214,.85), ${(-j2).toFixed(1)}px 0 rgba(255,210,63,.6), 0 10px 40px rgba(0,0,0,.5)`;
+  const big = $('d_big'); A(big, t, w(87), E, { back: 1, s0: .8, dy: 30, d: .45 });
+  if (t >= w(101) - .1) { const f = eio(P(t, w(101) - .1, .5));
+    big.style.transform = `translate(${(-230 * f).toFixed(1)}px,${(117 * f).toFixed(1)}px) scale(${lerp(1, .378, f).toFixed(3)})`; }
+  A($('d_yr'), t, w(97), w(101), { s0: 1.8, d: .18, dy: 0, fast: 1, rot: -3, od: .15 });
+  A($('d_base'), t, w(101), E, { dy: 0 });
+  A($('d_l'), t, w(101), E, { dy: 0, d: .2 }); A($('d_ll'), t, w(101), E, { dy: 0 });
+  const lx = eio(P(t, w(101) + .2, .8));
+  $('d_lb').style.height = (125 * lx) + 'px'; $('d_lp').textContent = money(99.99 * lx); $('d_lp').style.opacity = lx > 0 ? 1 : 0;
+  A($('d_r'), t, w(107), E, { back: 1, s0: .8, dy: 30 }); A($('d_rl'), t, w(107), E, { dy: 0 });
+  const rx = eio(P(t, w(108), .9));
+  $('d_rbar').style.height = (500 * rx) + 'px'; $('d_rp').textContent = money(399.99 * rx); $('d_rp').style.opacity = rx > .25 ? 1 : 0;
+  A($('d_x'), t, w(110), E, { s0: 2.4, d: .16, dy: 0, fast: 1, rot: -8 });
+}
+function s5(t) { const E = SC[5];
+  A($('e_t'), t, w(113), E, { back: 1, s0: .6, dy: 0 });
+  A($('e_a'), t, w(115), E, { back: 1, s0: .6, dy: 0, rot: -3 });
+  A($('e_b'), t, w(118), E, { back: 1, s0: .6, dy: 0, rot: 3 });
+  A($('e_eq'), t, w(119), E, { dy: 0 });
+  A($('e_tot'), t, w(121), E, { s0: 2, d: .18, dy: 0, fast: 1, rot: -3 });
+  $('e_v').textContent = money(479.98 * eio(P(t, w(121), .8)));
+}
+function s6(t) { const E = SC[6];
+  A($('f_chip'), t, w(125), E, { back: 1, s0: .6, dy: 0 });
+  A($('f_box'), t, w(125), E, { back: 1, s0: .8, dy: 30, d: .45 });
+  A($('f_a'), t, w(127), E, { back: 1, s0: .5, dy: 0 }); A($('f_b'), t, w(127) + .2, E, { back: 1, s0: .5, dy: 0 });
+}
+const SCENES = [s1, s2, s3, s4, s5, s6];
+// ===== VIDEO-SPECIFIC SCENES (JS) END =====

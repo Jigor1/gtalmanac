@@ -1,0 +1,107 @@
+  <!-- ===== VIDEO-SPECIFIC SCENES (HTML) START ===== -->
+  <style>
+  .gbox{position:absolute;visibility:hidden}
+  .gbox .lid{position:relative;z-index:2;margin:0 -22px;border-radius:14px;background:linear-gradient(#FF7AB0,#D92C74);box-shadow:0 12px 30px rgba(0,0,0,.45),inset 0 -6px 0 rgba(0,0,0,.18)}
+  .gbox .lid::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:13%;margin-left:-6.5%;background:#FFD23F;opacity:.9}
+  .gbox .bod{position:relative;overflow:hidden;border:6px solid #FF4F9A;border-top:0;border-radius:0 0 20px 20px;background:#1A0B2E;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .gbox .art{position:absolute;inset:0;background:url(assets/keyart.jpg) 50% 35%/cover}
+  .gbox .band{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(rgba(10,6,20,0),rgba(10,6,20,.92) 38%);font-family:Anton;text-transform:uppercase;text-align:center;color:#fff;letter-spacing:2px;line-height:1}
+  .ptag{position:relative;display:inline-block;box-sizing:border-box;border-radius:24px;background:#FFD23F;color:#1A0B2E;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .ptag::before{content:"";position:absolute;left:-20px;top:50%;width:40px;height:40px;margin-top:-20px;border-radius:50%;background:#0B0716}
+  .ptag .k{font:900 24px/1 Inter;letter-spacing:4px}
+  .ptag .v{font:900 110px/1 Inter;letter-spacing:-4px;font-variant-numeric:tabular-nums;margin-top:8px}
+  .slot{position:absolute;width:300px;height:118px;box-sizing:border-box;border-radius:20px;border:4px solid rgba(255,255,255,.22);background:rgba(22,13,38,.88);padding:14px 16px 0 70px;visibility:hidden;box-shadow:0 14px 34px rgba(0,0,0,.4)}
+  .slot.lit{border-color:#22E4D6;background:linear-gradient(135deg,rgba(34,228,214,.22),rgba(22,13,38,.92) 70%)}
+  .slot .n{position:absolute;left:14px;top:50%;margin-top:-22px;width:44px;height:44px;border-radius:50%;background:#22E4D6;color:#0B0716;font:900 24px/44px Inter;text-align:center}
+  .slot .nm{font-family:Anton;font-size:40px;line-height:1.05;text-transform:uppercase;white-space:nowrap}
+  .slot .sb{font:700 21px/1.2 Inter;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:6px;white-space:nowrap}
+  .slot.miss{border:5px dashed #FF4D6D;background:rgba(255,77,109,.12)}
+  .slot.miss .n{background:#FF4D6D;color:#fff}
+  .bar{position:absolute;bottom:0;left:0;right:0;border-radius:18px 18px 0 0}
+  .col{position:absolute;visibility:hidden}
+  .collbl{font:800 30px/1 Inter;letter-spacing:3px;text-transform:uppercase;text-align:center}
+  .rdbox{position:absolute;box-sizing:border-box;border-radius:18px;border:6px solid #C8322F;background:linear-gradient(160deg,#3A0E0E,#120607);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.55);overflow:hidden}
+  .btn{display:block;font-family:Anton;font-size:64px;line-height:1;text-transform:uppercase;padding:26px 0 30px;border-radius:26px;text-align:center}
+  .hero{position:absolute;left:280px;top:345px;width:520px;height:520px;border-radius:40px;overflow:hidden;border:6px solid rgba(255,255,255,.85);box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 60px rgba(255,79,154,.35);visibility:hidden;box-sizing:border-box}
+  .hero img{width:100%;height:100%;display:block;object-fit:cover}
+  .slot.ph{padding-left:112px}
+  .slot.ph .nm{font-size:36px}
+  .slot .th{position:absolute;left:12px;top:12px;width:86px;height:86px;border-radius:14px;object-fit:cover;border:2px solid rgba(255,255,255,.6);box-sizing:border-box}
+  .shadow{filter:drop-shadow(0 0 46px rgba(255,79,154,.6)) drop-shadow(0 30px 50px rgba(0,0,0,.6))}
+  </style>
+
+  <!-- S1 hook: the real box + price -->
+  <div class="bx shadow" id="a_box" style="left:160px;top:420px;width:760px"><img id="a_img" src="assets/box.png" style="width:100%;display:block"></div>
+  <div class="bx" id="a_tag" style="left:600px;top:575px"><div class="ptag" style="padding:22px 30px 22px 44px;transform:rotate(7deg)"><div class="k">ROCKSTAR STORE</div><div class="v" id="a_price">$399.99</div></div></div>
+  <div class="abs" id="a_st" style="top:740px"><span class="stamp" style="font-size:118px;color:#FF4D6D;padding:4px 44px 12px">Game not<br>included</span></div>
+
+  <!-- S2 what it is -->
+  <div class="abs" id="b_chip" style="top:352px"><span class="chip tl">The Goodtime State</span></div>
+  <div class="abs h sh" id="b_t" style="top:460px;font-size:168px;line-height:.98">Vice City<br><span class="pk">Collection</span></div>
+  <div class="abs" id="b_c1" style="top:830px"><span class="chip yl" style="color:#FFD23F;background:rgba(255,210,63,.12)">Ships Nov 19 &middot; launch day</span></div>
+  <div class="abs" id="b_c2" style="top:940px"><span class="chip pk">Rockstar Store only</span></div>
+  <div class="abs" id="b_c3" style="top:1050px"><span class="chip wh" style="font-size:30px">$399.99 &middot; game sold separately</span></div>
+
+  <!-- S3 unboxing: 11 items + the missing one -->
+  <div class="abs h sh" id="c_q" style="top:470px;font-size:150px">What's <span class="yl">inside?</span></div>
+  <div class="slot ph" id="c_s1" style="left:72px;top:345px"><img class="th" src="assets/macca.jpg"><div class="nm">Macca</div><div class="sb">gator figure</div></div>
+  <div class="slot ph" id="c_s2" style="left:390px;top:345px"><img class="th" src="assets/oakley.jpg"><div class="nm">Oakley</div><div class="sb">sunglasses</div></div>
+  <div class="slot ph" id="c_s3" style="left:708px;top:345px"><img class="th" src="assets/cap.jpg"><div class="nm">New Era</div><div class="sb">cap</div></div>
+  <div class="slot ph" id="c_s4" style="left:72px;top:481px"><img class="th" src="assets/bag.jpg"><div class="nm">Crossbody</div><div class="sb">bag</div></div>
+  <div class="slot ph" id="c_s5" style="left:390px;top:481px"><img class="th" src="assets/mirror.jpg"><div class="nm">Mirror</div><div class="sb">gator art</div></div>
+  <div class="slot ph" id="c_s6" style="left:708px;top:481px"><img class="th" src="assets/glass.jpg"><div class="nm">Shot glass</div><div class="sb">manatee</div></div>
+  <div class="slot ph" id="c_s7" style="left:72px;top:617px"><img class="th" src="assets/spoon.jpg"><div class="nm">Spoon</div><div class="sb">swizzle</div></div>
+  <div class="slot ph" id="c_s8" style="left:390px;top:617px"><img class="th" src="assets/keychain.jpg"><div class="nm">Keychain</div><div class="sb">razor blade</div></div>
+  <div class="slot ph" id="c_s9" style="left:708px;top:617px"><img class="th" src="assets/pins.jpg"><div class="nm">Pins</div><div class="sb">pin set</div></div>
+  <div class="slot ph" id="c_s10" style="left:72px;top:753px"><img class="th" src="assets/stickers.jpg"><div class="nm">Stickers</div><div class="sb">sticker pack</div></div>
+  <div class="slot ph" id="c_s11" style="left:390px;top:753px"><img class="th" src="assets/poster.jpg"><div class="nm">Poster</div><div class="sb">art print</div></div>
+  <div class="slot miss" id="c_s12" style="left:708px;top:753px"><div class="n">12</div><div class="nm" style="color:#FF4D6D">GTA 6</div><div class="sb">0 copies</div></div>
+  <div class="bx shadow" id="c_box" style="left:360px;top:890px;width:360px">
+    <img id="c_lid" src="assets/box_lid.png" style="width:100%;display:block;position:relative;z-index:2">
+    <img src="assets/box_base.png" style="width:100%;display:block">
+  </div>
+  <div class="bx" id="c_cntw" style="left:60px;top:1060px"><span class="chip wh" style="font-size:30px">Items: <span id="c_cnt">0</span></span></div>
+  <div class="hero" id="c_h1"><img src="assets/macca.jpg"></div>
+  <div class="hero" id="c_h2"><img src="assets/oakley.jpg"></div>
+  <div class="hero" id="c_h3"><img src="assets/cap.jpg"></div>
+  <div class="hero" id="c_h4"><img src="assets/bag.jpg"></div>
+  <div class="hero" id="c_h5"><img src="assets/mirror.jpg"></div>
+  <div class="hero" id="c_h6"><img src="assets/glass.jpg"></div>
+  <div class="hero" id="c_h7"><img src="assets/spoon.jpg"></div>
+  <div class="hero" id="c_h8"><img src="assets/keychain.jpg"></div>
+  <div class="hero" id="c_h9"><img src="assets/pins.jpg"></div>
+  <div class="hero" id="c_h10"><img src="assets/stickers.jpg"></div>
+  <div class="hero" id="c_h11"><img src="assets/poster.jpg"></div>
+  <div class="bx" id="c_stash" style="left:300px;top:800px"><span class="chip yl" style="font-size:32px;color:#FFD23F;background:#1A0B2E">Secret stash inside</span></div>
+  <div class="abs" id="c_st" style="top:930px"><span class="stamp" style="font-size:104px;color:#FF4D6D;padding:4px 40px 10px">0 copies of GTA 6</span></div>
+
+  <!-- S4 twist + RDR2 comparison -->
+  <div class="abs" id="d_tw" style="top:620px"><span class="h pk" style="font-size:230px;display:inline-block">The twist</span></div>
+  <div class="bx" id="d_big" style="left:90px;top:380px;width:900px;height:506px;border-radius:26px;overflow:hidden;border:5px solid rgba(255,255,255,.85);box-shadow:0 30px 80px rgba(0,0,0,.6);box-sizing:border-box"><img src="assets/rdr2.jpg" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+  <div class="bx" id="d_yr" style="left:110px;top:915px"><span class="chip wh" style="font-size:32px">2018 &middot; also no game</span></div>
+  <div class="col" id="d_l" style="left:130px;top:345px;width:360px;height:745px">
+    <div class="num yl" id="d_lp" style="position:absolute;left:0;width:360px;text-align:center;top:528px;font-size:78px;letter-spacing:-3px">$0</div>
+    <div class="bar" id="d_lb" style="height:0;background:linear-gradient(#FF6B5E,#B2241F)"></div>
+  </div>
+  <div class="col" id="d_r" style="left:590px;top:345px;width:360px;height:745px">
+    <img src="assets/box.png" style="position:absolute;left:40px;top:6px;width:280px;filter:drop-shadow(0 0 30px rgba(255,79,154,.6)) drop-shadow(0 16px 30px rgba(0,0,0,.6))">
+    <div class="bar" id="d_rbar" style="height:0;background:linear-gradient(#FF7AB0,#C2266B)"><div class="num" id="d_rp" style="position:absolute;left:0;right:0;top:22px;text-align:center;font-size:78px;letter-spacing:-3px;color:#fff">$0</div></div>
+  </div>
+  <div class="abs" id="d_base" style="top:1090px;visibility:hidden"><div style="width:880px;height:6px;margin:0 auto;border-radius:3px;background:rgba(255,255,255,.5)"></div></div>
+  <div class="bx collbl" id="d_ll" style="left:130px;width:360px;top:1112px">RDR2 &middot; 2018</div>
+  <div class="bx collbl pk" id="d_rl" style="left:590px;width:360px;top:1112px">GTA 6 &middot; 2026</div>
+  <div class="bx" id="d_x" style="left:150px;top:372px;width:320px;text-align:center"><span class="stamp yl" style="font-size:150px;padding:0 34px 8px">4X</span></div>
+
+  <!-- S5 box + game total -->
+  <div class="abs h sh" id="e_t" style="top:352px;font-size:120px">Box <span class="pk">+</span> game</div>
+  <div class="bx" id="e_a" style="left:60px;top:540px"><div class="ptag" style="width:470px;padding:24px 20px 24px 46px"><div class="k">THE BOX</div><div class="v" style="font-size:96px">$399.99</div></div></div>
+  <div class="bx" id="e_b" style="left:560px;top:540px"><div class="ptag" style="width:460px;padding:24px 20px 24px 46px;background:#22E4D6"><div class="k">THE GAME</div><div class="v" style="font-size:96px">$79.99</div></div></div>
+  <div class="abs" id="e_eq" style="top:752px"><span style="font:900 120px/1 Inter;color:rgba(255,255,255,.7)">=</span></div>
+  <div class="abs" id="e_tot" style="top:880px"><span class="stamp yl" style="font-size:190px;padding:0 50px 10px"><span id="e_v">$0</span></span></div>
+
+  <!-- S6 would you pay -->
+  <div class="abs" id="f_chip" style="top:345px"><span class="chip wh">$399.99 &middot; no game inside</span></div>
+  <div class="bx shadow" id="f_box" style="left:240px;top:445px;width:600px"><img src="assets/box.png" style="width:100%;display:block"></div>
+  <div class="bx" id="f_a" style="left:90px;top:975px;width:430px"><span class="btn" style="background:#22E4D6;color:#0B0716">I'd pay</span></div>
+  <div class="bx" id="f_b" style="left:560px;top:975px;width:430px"><span class="btn" style="background:#FF3D8B;color:#fff">No way</span></div>
+  <!-- ===== VIDEO-SPECIFIC SCENES (HTML) END ===== -->

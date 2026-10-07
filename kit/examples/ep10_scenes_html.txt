@@ -1,0 +1,112 @@
+  <!-- ===== VIDEO-SPECIFIC SCENES (HTML) START ===== -->
+  <style>
+  .ptag{position:relative;display:inline-block;box-sizing:border-box;border-radius:24px;background:#FFD23F;color:#1A0B2E;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .ptag::before{content:"";position:absolute;left:-20px;top:50%;width:40px;height:40px;margin-top:-20px;border-radius:50%;background:#0B0716}
+  .ptag .k{font:900 24px/1 Inter;letter-spacing:4px;text-transform:uppercase}
+  .ptag .v{font:900 116px/1 Inter;letter-spacing:-5px;font-variant-numeric:tabular-nums;margin-top:8px}
+  .pic{position:absolute;visibility:hidden;border-radius:26px;overflow:hidden;border:5px solid rgba(255,255,255,.85);box-shadow:0 30px 80px rgba(0,0,0,.6);box-sizing:border-box}
+  .pic img{width:100%;height:100%;object-fit:cover;display:block}
+  .ps{filter:drop-shadow(0 0 50px rgba(34,228,214,.35)) drop-shadow(0 30px 50px rgba(0,0,0,.6))}
+  .stair{position:absolute;bottom:0;width:200px;border-radius:18px 18px 0 0;height:0}
+  .stair .pv{position:absolute;left:0;right:0;top:16px;text-align:center;font:900 50px/1 Inter;letter-spacing:-2px;color:#fff}
+  .slbl{position:absolute;width:200px;text-align:center;font:800 24px/1.15 Inter;letter-spacing:2px;text-transform:uppercase;visibility:hidden}
+  .memo{box-sizing:border-box;width:880px;margin:0 auto;padding:40px 46px 44px;border-radius:10px;background:#F4F1EA;color:#1A1A1A;text-align:left;box-shadow:0 30px 80px rgba(0,0,0,.55);transform:rotate(-2deg)}
+  .memo .mh{font:900 26px/1 Inter;letter-spacing:4px;color:#C8102E}
+  .memo .mt{font:800 44px/1.1 Inter;margin:14px 0 24px}
+  .memo .row{display:flex;justify-content:space-between;align-items:baseline;font:700 38px/1 Inter;padding:18px 12px;border-top:3px solid rgba(0,0,0,.12);border-radius:8px}
+  .memo .row b{font-weight:900;font-variant-numeric:tabular-nums}
+  .node{position:absolute;width:250px;text-align:center;visibility:hidden}
+  .node .bx2{height:150px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:44px;text-transform:uppercase;border:5px solid;box-sizing:border-box;background:rgba(22,13,38,.9)}
+  .arr{position:absolute;height:12px;border-radius:6px;transform-origin:0 50%;visibility:hidden}
+  .arr::after{content:"";position:absolute;right:-6px;top:50%;margin-top:-20px;border-left:30px solid currentColor;border-top:20px solid transparent;border-bottom:20px solid transparent}
+  .shelf{position:absolute;left:0;right:0;height:16px;border-radius:8px;background:linear-gradient(#7B6A96,#4A3D60);box-shadow:0 10px 20px rgba(0,0,0,.4)}
+  .ghost{position:absolute;width:150px;height:190px;border-radius:12px;border:4px dashed rgba(255,255,255,.22);box-sizing:border-box}
+  .btn{display:block;font-family:Anton;font-size:60px;line-height:1;text-transform:uppercase;padding:26px 0 30px;border-radius:26px;text-align:center}
+  </style>
+
+  <!-- S1 hook -->
+  <div class="bx ps" id="a_ps" style="left:250px;top:360px;width:560px"><img src="assets/ps5pro.png" style="width:100%;display:block"></div>
+  <div class="bx" id="a_tag" style="left:560px;top:820px"><div class="ptag" style="padding:22px 34px 22px 48px;transform:rotate(-6deg)"><div class="k">GameStop</div><div class="v">$1,499</div></div></div>
+  <div class="bx" id="a_used" style="left:110px;top:560px"><span class="stamp" style="font-size:150px;color:#FF4D6D;padding:0 40px 8px">Used</span></div>
+  <div class="bx" id="a_thx" style="left:80px;top:960px"><span class="chip pk" style="font-size:34px">Thanks, GTA 6</span></div>
+
+  <!-- S2 price ladder -->
+  <div class="abs" id="b_tag" style="top:345px"><div class="ptag" style="padding:20px 40px 18px 56px;transform:rotate(-3deg)"><div class="k" id="b_k">PS5 Pro &middot; new</div><div class="v" id="b_v" style="font-size:124px">$699</div></div></div>
+  <div class="bx" id="b_st" style="left:95px;top:620px;width:890px;height:490px">
+    <div class="stair" id="b_b1" style="left:0;background:linear-gradient(#6B5A86,#3C2F52)"><div class="pv">$699</div></div>
+    <div class="stair" id="b_b2" style="left:230px;background:linear-gradient(#22E4D6,#14857D)"><div class="pv">$749</div></div>
+    <div class="stair" id="b_b3" style="left:460px;background:linear-gradient(#FF7AB0,#C2266B)"><div class="pv">$899</div></div>
+    <div class="stair" id="b_b4" style="left:690px;height:490px;border:5px dashed rgba(255,255,255,.3);border-bottom:0;box-sizing:border-box;background:transparent"><div class="pv" style="top:190px;font-size:90px;color:rgba(255,255,255,.3)">?</div></div>
+  </div>
+  <div class="bx" id="b_base" style="left:80px;top:1110px;width:920px;height:6px;border-radius:3px;background:rgba(255,255,255,.5)"></div>
+  <div class="slbl" id="b_l1" style="left:95px;top:1128px">2024 launch</div>
+  <div class="slbl tl" id="b_l2" style="left:325px;top:1128px">2025</div>
+  <div class="slbl pk" id="b_l3" style="left:555px;top:1128px">2026 &middot; new</div>
+  <div class="slbl" id="b_l4" style="left:785px;top:1128px;color:rgba(255,255,255,.45)">Used?</div>
+
+  <!-- S3 leaked memo (real screenshot) -->
+  <div class="abs" id="c_chip" style="top:350px"><span class="chip wh">Leaked GameStop memo</span></div>
+  <div class="pic" id="c_memo" style="left:90px;top:470px;width:900px;height:418px;border-radius:14px;background:#fff">
+    <img src="assets/memo_table.png" style="object-fit:fill">
+    <div id="c_hl" style="position:absolute;left:491px;top:44px;width:206px;height:368px;background:rgba(255,210,63,.35);border:4px solid #FFD23F;border-radius:8px;box-sizing:border-box;opacity:0"></div>
+  </div>
+  <div class="bx" id="c_lk" style="left:100px;top:835px"><span class="stamp" style="font-size:70px;color:#FF4D6D;padding:0 26px 6px">Leaked</span></div>
+  <div class="abs" id="c_used" style="top:975px"><span class="stamp" style="font-size:170px;color:#FF4D6D;padding:0 50px 10px">Used.</span></div>
+
+  <!-- S4 intentional (real memo text) -->
+  <div class="abs" id="d_chip" style="top:350px"><span class="chip wh">GameStop staff were told:</span></div>
+  <div class="pic" id="d_memo" style="left:90px;top:460px;width:900px;height:398px;border-radius:14px;background:#fff">
+    <img src="assets/memo_text.png" style="object-fit:fill">
+    <div id="d_hl" style="position:absolute;left:584px;top:216px;width:0;height:52px;background:rgba(255,210,63,.55);border-radius:6px"></div>
+  </div>
+  <div class="abs" id="d_q" style="top:900px"><span class="stamp yl" style="font-size:150px;padding:0 46px 10px">Intentional.</span></div>
+
+  <!-- S5 new vs used -->
+  <div class="bx" id="e_cols" style="left:150px;top:420px;width:780px;height:690px">
+    <div class="stair" id="e_b1" style="left:40px;width:300px;background:linear-gradient(#22E4D6,#14857D)"><div class="pv" style="font-size:62px">$899</div></div>
+    <div class="stair" id="e_b2" style="left:440px;width:300px;background:linear-gradient(#FF7AB0,#C2266B)"><div class="pv" style="font-size:62px">$1,499</div></div>
+  </div>
+  <div class="bx" id="e_base" style="left:80px;top:1110px;width:920px;height:6px;border-radius:3px;background:rgba(255,255,255,.5)"></div>
+  <div class="slbl tl" id="e_l1" style="left:190px;top:1128px;width:300px">Brand-new</div>
+  <div class="slbl pk" id="e_l2" style="left:590px;top:1128px;width:300px">Used &middot; GameStop</div>
+  <div class="bx" id="e_gap" style="left:120px;top:400px"><span class="stamp yl" style="font-size:110px;padding:0 36px 8px">+$600</span></div>
+
+  <!-- S6 trade-in loop -->
+  <div class="abs h sh" id="f_t" style="top:350px;font-size:96px">The <span class="yl">flip</span></div>
+  <div class="node" id="f_n1" style="left:50px;top:560px"><div class="bx2" style="border-color:#22E4D6;color:#22E4D6">You</div></div>
+  <div class="node" id="f_n2" style="left:415px;top:560px"><div class="bx2" style="border-color:#FF4F9A;overflow:hidden;padding:0"><img src="assets/gamestop.jpg" style="width:100%;height:100%;object-fit:cover;display:block"></div></div>
+  <div class="node" id="f_n3" style="left:780px;top:560px"><div class="bx2" style="border-color:#FFD23F;color:#FFD23F">Next buyer</div></div>
+  <div class="arr" id="f_a1" style="left:310px;top:629px;width:95px;color:#22E4D6;background:#22E4D6"></div>
+  <div class="arr" id="f_a2" style="left:675px;top:629px;width:95px;color:#FFD23F;background:#FFD23F"></div>
+  <div class="bx" id="f_p1" style="left:40px;top:760px;width:400px;text-align:center"><div class="num tl" style="font-size:100px;letter-spacing:-4px">$800</div><div class="lbl mut" style="font-size:22px;margin-top:10px">Trade-in value</div></div>
+  <div class="bx" id="f_p2" style="left:640px;top:760px;width:400px;text-align:center"><div class="num yl" style="font-size:100px;letter-spacing:-4px">$1,399</div><div class="lbl mut" style="font-size:22px;margin-top:10px">Resale &middot; digital</div></div>
+  <div class="abs" id="f_gap" style="top:990px"><span class="chip" style="font-size:40px;color:#5BE49B;background:rgba(91,228,155,.12)">&asymp; $600 gap per console</span></div>
+
+  <!-- S7 why: GTA 6 + sold out -->
+  <div class="abs h pk" id="g_why" style="top:600px;font-size:260px">Why?</div>
+  <div class="pic" id="g_art" style="left:90px;top:345px;width:900px;height:300px"><img src="assets/keyart.jpg" style="object-position:50% 35%"></div>
+  <div class="bx" id="g_date" style="left:610px;top:590px"><span class="chip yl" style="font-size:40px;color:#FFD23F;background:#1A0B2E">Nov 19</span></div>
+  <div class="pic" id="g_shelf" style="left:90px;top:700px;width:900px;height:430px"><img src="assets/shelf.jpg"></div>
+  <div class="abs" id="g_so" style="top:830px"><span class="stamp" style="font-size:130px;color:#FF4D6D;padding:0 44px 10px">Sold out</span></div>
+
+  <!-- S8 QSSR -->
+  <div class="abs" id="h_chip" style="top:345px"><span class="chip" style="color:#5BE49B;background:rgba(91,228,155,.12)">The good news</span></div>
+  <div class="abs h sh" id="h_t" style="top:450px;font-size:108px">Regular PS5 <span class="tl">+ QSSR</span></div>
+  <div class="lbl mut abs" id="h_sub" style="top:580px;font-size:26px">Sony's new AI upscaler</div>
+  <div class="pic" id="h_split" style="left:90px;top:630px;width:900px;height:507px"><img src="assets/qssr.jpg"></div>
+  <div class="abs" id="h_if" style="top:1060px"><span class="chip yl" style="color:#FFD23F;background:#1A0B2E;font-size:30px">If Rockstar uses it</span></div>
+
+  <!-- S9 total -->
+  <div class="abs h sh" id="i_t" style="top:352px;font-size:112px">Pro <span class="pk">+</span> game</div>
+  <div class="bx" id="i_a" style="left:60px;top:540px"><div class="ptag" style="width:470px;padding:24px 20px 24px 46px"><div class="k">Used PS5 Pro</div><div class="v" style="font-size:92px">$1,499.99</div></div></div>
+  <div class="bx" id="i_b" style="left:560px;top:540px"><div class="ptag" style="width:460px;padding:24px 20px 24px 46px;background:#22E4D6"><div class="k">GTA 6</div><div class="v" style="font-size:92px">$79.99</div></div></div>
+  <div class="abs" id="i_eq" style="top:752px"><span style="font:900 120px/1 Inter;color:rgba(255,255,255,.7)">=</span></div>
+  <div class="abs" id="i_tot" style="top:880px"><span class="stamp yl" style="font-size:180px;padding:0 50px 10px"><span id="i_v">$0</span></span></div>
+
+  <!-- S10 end -->
+  <div class="abs" id="j_warn" style="top:345px"><span class="chip yl" style="color:#FFD23F;background:rgba(255,210,63,.12);font-size:32px">&#9888; Leaked memo &middot; not official</span></div>
+  <div class="bx ps" id="j_ps" style="left:320px;top:450px;width:440px"><img src="assets/ps5pro.png" style="width:100%;display:block"></div>
+  <div class="bx" id="j_tag" style="left:600px;top:730px"><div class="ptag" style="padding:16px 26px 16px 42px;transform:rotate(-6deg)"><div class="k">Used</div><div class="v" style="font-size:80px">$1,499</div></div></div>
+  <div class="bx" id="j_a" style="left:90px;top:1000px;width:430px"><span class="btn" style="background:#22E4D6;color:#0B0716">I'd pay</span></div>
+  <div class="bx" id="j_b" style="left:560px;top:1000px;width:430px"><span class="btn" style="background:#FF3D8B;color:#fff">No way</span></div>
+  <!-- ===== VIDEO-SPECIFIC SCENES (HTML) END ===== -->
