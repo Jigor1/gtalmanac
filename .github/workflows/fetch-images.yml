@@ -1,0 +1,54 @@
+# GTAlmanac image robot: img/<ep>.json -> images/<ep>/
+name: fetch-images
+on:
+ push:
+  branches: [main]
+  paths: ['img/**']
+ workflow_dispatch:
+permissions:
+ contents: write
+concurrency: fetch-images
+jobs:
+ fetch:
+  runs-on: ubuntu-latest
+  steps:
+  - uses: actions/checkout@v4
+  - run: |
+     python3 - <<'PY'
+     import json,os,re,glob,html,urllib.request as U,urllib.parse as Q
+     def get(u,r=None):
+      h={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36","Accept-Language":"en-US"}
+      if r:h["Referer"]=r
+      with U.urlopen(U.Request(u,headers=h),timeout=30) as x:return x.read(),x.headers.get("Content-Type","")
+     def og(p):
+      s=get(p)[0].decode("utf-8","ignore")
+      for k in [r'property=["\']og:image["\'][^>]*content=["\']([^"\']+)',r'content=["\']([^"\']+)["\'][^>]*property=["\']og:image',r'name=["\']twitter:image["\'][^>]*content=["\']([^"\']+)']:
+       m=re.search(k,s,re.I)
+       if m:return Q.urljoin(p,html.unescape(m.group(1)))
+      raise Exception("no og:image")
+     def wiki(t,l):
+      d=json.loads(get("https://%s.wikipedia.org/api/rest_v1/page/summary/%s"%(l,Q.quote(t.replace(" ","_"))))[0])
+      return (d.get("originalimage") or d.get("thumbnail") or {})["source"]
+     def commons(q):
+      d=json.loads(get("https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrnamespace=6&gsrlimit=1&prop=imageinfo&iiprop=url&iiurlwidth=1600&gsrsearch="+Q.quote(q))[0])
+      for p in d["query"]["pages"].values():return p["imageinfo"][0]["thumburl"]
+     E={"image/jpeg":"jpg","image/png":"png","image/webp":"webp","image/gif":"gif","image/avif":"avif"}
+     for j in sorted(glob.glob("img/*.json")):
+      ep=re.sub(r"[^a-z0-9_-]","",os.path.basename(j)[:-5].lower()) or "misc";o="images/"+ep;os.makedirs(o,exist_ok=True);rep=[]
+      for it in json.load(open(j)).get("items",[])[:30]:
+       n=re.sub(r"[^a-z0-9_-]","",str(it.get("name","img")).lower()) or "img"
+       try:
+        r=it.get("page")
+        s=it.get("url") or (r and og(r)) or (it.get("wiki") and wiki(it["wiki"],it.get("lang","en"))) or commons(it["commons"])
+        b,c=get(s,r or it.get("referer"));e=E.get(c.split(";")[0].strip().lower())
+        if not e or len(b)>15000000:raise Exception("not an image or too big: "+c[:50])
+        open(o+"/"+n+"."+e,"wb").write(b);rep.append({"name":n,"file":n+"."+e,"source":s,"bytes":len(b)})
+       except Exception as x:rep.append({"name":n,"error":str(x)[:200]})
+      json.dump(rep,open(o+"/_report.json","w"),indent=1);os.remove(j);print(ep,rep)
+     PY
+     git config user.name gtalmanac-bot
+     git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+     git add -A .
+     git diff --cached --quiet && exit 0
+     git commit -m "images: fetched"
+     for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 3; done
