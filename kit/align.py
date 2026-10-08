@@ -7,6 +7,7 @@ from pocketsphinx import Decoder
 import pocketsphinx
 from num2words import num2words
 CUSTOM = {  # ARPAbet for words missing from CMUdict - add new names here
+    "customization": "K AH S T AH M AH Z EY SH AH N",
     "gta": "JH IY T IY EY", "gtalmanac": "JH IY T IY AO L M AH N AE K",
     "leonida": "L IY OW N IY D AH", "lucia": "L UW S IY AH", "zelnick": "Z EH L N IH K",
     "rockstar": "R AA K S T AA R", "netflix": "N EH T F L IH K S", "xbox": "EH K S B AA K S",
