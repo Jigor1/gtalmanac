@@ -1,0 +1,65 @@
+# GTAlmanac reader robot: read/<name>.json -> articles/<name>/
+name: read-articles
+on:
+ push:
+  branches: [main]
+  paths: ['read/**']
+ workflow_dispatch:
+permissions:
+ contents: write
+concurrency: read-articles
+jobs:
+ read:
+  runs-on: ubuntu-latest
+  steps:
+  - uses: actions/checkout@v4
+  - run: |
+     python3 - <<'PY'
+     import json,os,re,glob,html,gzip,urllib.request as U
+     from html.parser import HTMLParser
+     SKIP={"script","style","noscript","nav","footer","header","aside","form","svg","iframe","button"}
+     BLOCK={"p","h1","h2","h3","h4","li","br","div","tr","blockquote","article","section"}
+     class P(HTMLParser):
+      def __init__(s):super().__init__();s.d=0;s.o=[];s.title="";s.t=0;s.meta={}
+      def handle_starttag(s,t,a):
+       a=dict(a)
+       if t=="meta":
+        k=a.get("property") or a.get("name")
+        if k in("og:title","og:description","article:published_time","datePublished","description"):s.meta[k]=a.get("content","")
+       if t in SKIP:s.d+=1
+       if t=="title":s.t=1
+       if t in BLOCK and not s.d:s.o.append("\n")
+      def handle_endtag(s,t):
+       if t in SKIP and s.d:s.d-=1
+       if t=="title":s.t=0
+      def handle_data(s,x):
+       if s.t:s.title+=x
+       elif not s.d and x.strip():s.o.append(x.strip()+" ")
+     def get(u):
+      h={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36","Accept-Language":"en-US,en;q=0.9","Accept-Encoding":"gzip"}
+      with U.urlopen(U.Request(u,headers=h),timeout=30) as x:
+       b=x.read()
+       if x.headers.get("Content-Encoding")=="gzip":b=gzip.decompress(b)
+       m=re.search(r"charset=([\w-]+)",x.headers.get("Content-Type",""))
+       return b.decode(m.group(1) if m else "utf-8","ignore")
+     for j in sorted(glob.glob("read/*.json")):
+      n=re.sub(r"[^a-z0-9_-]","",os.path.basename(j)[:-5].lower()) or "misc";o="articles/"+n;os.makedirs(o,exist_ok=True);rep=[]
+      for i,u in enumerate(json.load(open(j)).get("urls",[])[:15],1):
+       try:
+        p=P();p.feed(get(u))
+        t=re.sub(r"\n\s*\n+","\n\n",re.sub(r"[ \t]+"," ","".join(p.o))).strip()
+        ti=html.unescape(p.meta.get("og:title") or p.title).strip()
+        dt=p.meta.get("article:published_time") or p.meta.get("datePublished") or ""
+        ds=html.unescape(p.meta.get("og:description") or p.meta.get("description") or "")
+        f="%02d.txt"%i
+        open(o+"/"+f,"w",encoding="utf-8").write("TITLE: %s\nDATE: %s\nURL: %s\nSUMMARY: %s\n\n%s\n"%(ti,dt,u,ds,html.unescape(t)[:30000]))
+        rep.append({"url":u,"file":f,"title":ti[:150],"date":dt,"chars":len(t)})
+       except Exception as x:rep.append({"url":u,"error":str(x)[:200]})
+      json.dump(rep,open(o+"/_report.json","w"),indent=1);os.remove(j);print(n,rep)
+     PY
+     git config user.name gtalmanac-bot
+     git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+     git add -A .
+     git diff --cached --quiet && exit 0
+     git commit -m "articles: read"
+     for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 3; done
