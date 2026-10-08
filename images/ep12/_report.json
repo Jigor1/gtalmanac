@@ -1,0 +1,30 @@
+[
+ {
+  "name": "vi",
+  "error": "no og:image"
+ },
+ {
+  "name": "wiki",
+  "file": "wiki.png",
+  "source": "https://upload.wikimedia.org/wikipedia/en/4/46/Grand_Theft_Auto_VI.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "bytes": 48636
+ },
+ {
+  "name": "dex",
+  "file": "dex.jpg",
+  "source": "https://www.dexerto.com/cdn-image/wp-content/uploads/2026/09/09/gta-6-jason-lucia-escape.jpg",
+  "bytes": 1182632
+ },
+ {
+  "name": "dex2",
+  "file": "dex2.jpg",
+  "source": "https://www.dexerto.com/cdn-image/wp-content/uploads/2026/10/08/gta-6-jason-lucia-driving.jpg",
+  "bytes": 1062373
+ },
+ {
+  "name": "gb",
+  "file": "gb.png",
+  "source": "https://resizer.ladbiblegroup.com/ogimage/v3/assets/bltbc1876152fcd9f07/bltb9fef5e996853c9c/6ac78928a5072b0baaaff2df/gta6leak.png",
+  "bytes": 340405
+ }
+]
