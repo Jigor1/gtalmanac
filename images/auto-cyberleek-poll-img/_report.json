@@ -1,0 +1,32 @@
+[
+ {
+  "name": "notebookcheck",
+  "file": "notebookcheck.jpg",
+  "source": "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc5/GTA6LuciaJasonRobbery.jpg",
+  "bytes": 314718
+ },
+ {
+  "name": "levelup",
+  "file": "levelup.jpg",
+  "source": "https://www.levelup.com/resizer/v2/5AE3KDBKJZHZBGMQV5AU77SWSE.jpg?auth=26ffbdadba35329502ee4e829416c13c99a00ce458e4891e631a67ea225c00d0&height=630&width=1200&quality=70&smart=true",
+  "bytes": 80229
+ },
+ {
+  "name": "gtaintel",
+  "file": "gtaintel.png",
+  "source": "https://gtaintel.com/images/articles/where-is-cyberleek-now-gta-6-leaker-update.png",
+  "bytes": 1215487
+ },
+ {
+  "name": "rockstar_vi",
+  "file": "rockstar_vi.jpg",
+  "source": "https://www.rockstargames.com/VI/-/opengraph-image.jpg?opengraph-image.0t8ty~nlmxq2s.jpg",
+  "bytes": 864851
+ },
+ {
+  "name": "taketwo",
+  "file": "taketwo.png",
+  "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Take-Two_Interactive_Logo.svg/500px-Take-Two_Interactive_Logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "bytes": 8560
+ }
+]
