@@ -148,3 +148,6 @@ A rede do ambiente bloqueia a ElevenLabs, o storage.googleapis.com e a maioria d
 
 ## Robô leitor (artigos completos)
 `python3 kit/tools/read.py <nome> <url> [<url>...] --out <pasta>` baixa o texto completo (TITLE/DATE/URL/SUMMARY + corpo) pelo GitHub (`read/` → `articles/`, workflow `read-articles.yml`). Use para checar fatos antes de gravar o roteiro; o radar descobre as notícias por WebSearch e lê os artigos por este robô (WebFetch falha em rotinas sem supervisão).
+
+## Aprovação e publicação (regra do Igor, 08/10/2026)
+Nenhum vídeo gerado numa conversa com o Igor é publicado sem a aprovação dele. Entregue a página de download, espere o "aprovado" e só então copie o MP4 e a capa para `publish/` no repositório, agende pelo Metricool (createScheduledPost, melhor horário via getBestTimeToPostByNetwork) e confirme com getScheduledPosts. Depois da publicação, apague os arquivos de `publish/`.
