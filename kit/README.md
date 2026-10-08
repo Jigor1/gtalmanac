@@ -15,6 +15,7 @@ The full procedure lives in the `gtalmanac-shorts` skill; this folder is the cod
 | `page_template.html` | Portuguese download page (player, download buttons, titles, caption). |
 | `tools/narrate.py` | Narration through the GitHub narrator robot (`tts/` → `audio/`). |
 | `tools/images.py` | Images through the GitHub image robot (`img/` → `images/`). |
+| `tools/read.py` | Full article text through the GitHub reader robot (`read/` → `articles/`). |
 | `tools/splice.py` | Puts `scenes_html.txt` + `scenes_js.txt` into `video.html`. |
 | `tools/make_page.py` | Fills `page_template.html` for an episode. |
 | `examples/` | Scene code from Ep. 8 (unboxing grid), Ep. 9 (quote reveal, price ladder, traffic light), Ep. 10 (leaked memo highlight, price flip). |

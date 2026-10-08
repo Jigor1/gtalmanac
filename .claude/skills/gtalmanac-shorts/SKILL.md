@@ -14,7 +14,7 @@ Use esta skill sempre que o Igor pedir um vídeo, roteiro, pauta ou ajuste para 
 - **Objetivo (desde 05/10/2026): viralizar.** Na fase de crescimento, o alvo são vídeos de milhões de views. Não precisa ser só notícia: curiosidades, histórias, coisas engraçadas, comparações e "do contra" valem.
 - **Temas:** GTA 6 é o centro, mas o canal pode desviar para temas satélites: GTA 5 (já validado e muito buscado), jogos antigos da série, Red Dead, a Rockstar (história, bastidores, polêmicas), a Take-Two (dona da Rockstar), atores e criadores ligados aos jogos, preços de jogos e consoles ligados ao GTA 6.
 - **Sem fonte na tela e sem checagem rigorosa** (pedido do Igor em 05/10/2026). O rodapé de fontes fica desligado (`FOOT = []`). Rumor, vazamento e notícia não oficial podem entrar; nesse caso, avise no fim do vídeo (ex.: "Heads up: this comes from a leaked memo, not an official announcement."). Mesmo assim, não invente números nem afirme como fato algo que você sabe que é falso: comentário de "fake" derruba o alcance.
-- **Perfil de fã:** bio "Fan channel · not affiliated with Rockstar Games". O logo da Rockstar nunca vira marca do canal. Mídia vazada do jogo nunca entra.
+- **Perfil de fã:** bio "Fan channel · not affiliated with Rockstar Games". O logo da Rockstar nunca vira marca do canal. Rumores e vazamentos são tema livre (decisão do Igor, 08/10/2026: o objetivo é viralizar com TUDO do mundo GTA). Reporte o vazamento com aviso de rumor no fim, mas não embuta o material vazado em si (vídeo/prints de gameplay do vazamento, cenas de nudez): conte com texto animado, mapas, ícones e imagens oficiais/públicas, e use palavras genéricas nas legendas (censure termos explícitos). Isso protege o canal de strikes sem perder o assunto.
 - **Lançamento do GTA 6:** 19/11/2026 (PS5 e Xbox Series X|S). Preços: Standard US$ 79,99, Ultimate US$ 99,99.
 - Decisões do Igor ficam na memória, nos arquivos /areas/gtalmanac.md e /areas/gta6-radar.md. Leia antes de começar.
 
@@ -145,3 +145,6 @@ A rede do ambiente bloqueia a ElevenLabs, o storage.googleapis.com e a maioria d
   - Preço pelo mundo (Índia ₹5.999; confira loja por loja).
   - Contagem regressiva diária até 19/11.
 - **Rumores (podem entrar, com aviso no fim):** cópia física só com código de download; 30 fps nos consoles; projeção de 25M de pré-vendas até o lançamento.
+
+## Robô leitor (artigos completos)
+`python3 kit/tools/read.py <nome> <url> [<url>...] --out <pasta>` baixa o texto completo (TITLE/DATE/URL/SUMMARY + corpo) pelo GitHub (`read/` → `articles/`, workflow `read-articles.yml`). Use para checar fatos antes de gravar o roteiro; o radar descobre as notícias por WebSearch e lê os artigos por este robô (WebFetch falha em rotinas sem supervisão).
