@@ -1,0 +1,30 @@
+[
+ {
+  "name": "dexerto",
+  "file": "dexerto.jpg",
+  "source": "https://www.dexerto.com/cdn-image/wp-content/uploads/2026/09/09/gta-6-jason-lucia-escape.jpg",
+  "bytes": 1182632
+ },
+ {
+  "name": "gamesradar",
+  "file": "gamesradar.jpg",
+  "source": "https://cdn.mos.cms.futurecdn.net/jQWpAjCrVBgDbmFAzj3AQJ-1920-80.jpg",
+  "bytes": 186441
+ },
+ {
+  "name": "talkesport",
+  "file": "talkesport.webp",
+  "source": "https://www.talkesport.com/wp-content/uploads/GTA-6-Gameplay-Leaked-Again-scaled.webp",
+  "bytes": 140842
+ },
+ {
+  "name": "techinsider",
+  "error": "HTTP Error 403: Forbidden"
+ },
+ {
+  "name": "rockstar_vi",
+  "file": "rockstar_vi.jpg",
+  "source": "https://www.rockstargames.com/VI/_next/static/media/meta.0t8ty~nlmxq2s.jpg",
+  "bytes": 864851
+ }
+]
