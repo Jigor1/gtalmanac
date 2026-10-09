@@ -1,0 +1,52 @@
+{
+ "items": [
+  {
+   "name": "vice",
+   "page": "https://www.vice.com/en/article/gta-6-new-screenshots-radio-stations/"
+  },
+  {
+   "name": "dexerto",
+   "page": "https://www.dexerto.com/gta/gta-6-radio-stations-revealed-and-you-can-listen-to-them-now-3417185/"
+  },
+  {
+   "name": "gamerant",
+   "page": "https://gamerant.com/gta-6-music-radio-stations/"
+  },
+  {
+   "name": "rockstar",
+   "page": "https://www.rockstargames.com/VI"
+  },
+  {
+   "name": "badbunny",
+   "wiki": "Bad Bunny"
+  },
+  {
+   "name": "lana",
+   "wiki": "Lana Del Rey"
+  },
+  {
+   "name": "slayer",
+   "wiki": "Slayer"
+  },
+  {
+   "name": "robyn",
+   "wiki": "Robyn"
+  },
+  {
+   "name": "burna",
+   "wiki": "Burna Boy"
+  },
+  {
+   "name": "trina",
+   "wiki": "Trina (rapper)"
+  },
+  {
+   "name": "wallen",
+   "wiki": "Morgan Wallen"
+  },
+  {
+   "name": "trickdaddy",
+   "wiki": "Trick Daddy"
+  }
+ ]
+}
