@@ -1,0 +1,34 @@
+[
+ {
+  "url": "https://www.nme.com/news/gaming-news/cardi-b-grand-theft-auto-6-the-album-fuerza-regida-3972743",
+  "file": "01.txt",
+  "title": "'Grand Theft Auto 6' reveals two new artists for 'The Album'",
+  "date": "2026-10-09T08:43:19+00:00",
+  "chars": 2353
+ },
+ {
+  "url": "https://www.justjared.com/2026/10/08/cardi-b-drops-new-dont-chart-song-from-grand-theft-auto-vi-album-read-lyrics-listen-now/",
+  "file": "02.txt",
+  "title": "Cardi B Drops New 'Don't Chart' Song from 'Grand Theft Auto VI' Album - Read Lyrics & Listen Now!",
+  "date": "2026-10-09T03:21:26+00:00",
+  "chars": 2111
+ },
+ {
+  "url": "https://thecircle.de/en/blogs/news/cardi-b-veroffentlicht-neue-single-dont-chart-fur-gta-6",
+  "error": "HTTP Error 429: Too Many Requests"
+ },
+ {
+  "url": "https://dailybeirut.com/en/lifestyle/cardi-b-releases-dont-chart-from-gta-vi-soundtrack/",
+  "file": "04.txt",
+  "title": "Cardi B Drops 'Don't Chart' for GTA VI Soundtrack",
+  "date": "2026-10-09T03:47:33.506Z",
+  "chars": 1825
+ },
+ {
+  "url": "https://beebom.com/gta-6-spotify-leak-reveals-cardi-b-fuerza-regida-joining-soundtrack/",
+  "file": "05.txt",
+  "title": "[UPDATE: Confirmed] Cardi B and Fuerza Regida Could Be Next Artists for GTA 6 Soundtrack",
+  "date": "2026-10-05T09:22:43+05:30",
+  "chars": 4458
+ }
+]
