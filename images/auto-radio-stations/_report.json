@@ -1,0 +1,70 @@
+[
+ {
+  "name": "vice",
+  "file": "vice.jpg",
+  "source": "https://www.vice.com/wp-content/uploads/sites/2/2026/10/Rockstar-Releases-New-GTA-6-Screenshots-Radio-Stations.jpg?w=1280",
+  "bytes": 270858
+ },
+ {
+  "name": "dexerto",
+  "file": "dexerto.jpg",
+  "source": "https://www.dexerto.com/cdn-image/wp-content/uploads/2026/10/08/GTA-6-reveals-six-radio-stations-you-can-listen-to-right-now.jpg",
+  "bytes": 331583
+ },
+ {
+  "name": "gamerant",
+  "file": "gamerant.jpg",
+  "source": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/10/rockstar-officially-previews-gta-6-s-radio-stations.jpg?w=1600&h=900&fit=crop",
+  "bytes": 194475
+ },
+ {
+  "name": "rockstar",
+  "file": "rockstar.jpg",
+  "source": "https://www.rockstargames.com/VI/_next/static/media/meta.0t8ty~nlmxq2s.jpg",
+  "bytes": 864851
+ },
+ {
+  "name": "badbunny",
+  "file": "badbunny.jpg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "bytes": 1887202
+ },
+ {
+  "name": "lana",
+  "file": "lana.jpg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/d/d0/LanaDRPrimavera310524_%2832_of_147%29_%2853765476960%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "bytes": 1404931
+ },
+ {
+  "name": "slayer",
+  "file": "slayer.jpg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Slayer%2C_The_Fields_of_Rock%2C_2007.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "bytes": 164900
+ },
+ {
+  "name": "robyn",
+  "file": "robyn.jpg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/0/05/Robyn_face.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "bytes": 1968851
+ },
+ {
+  "name": "burna",
+  "file": "burna.jpg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Untold_2024_-Burna_Boy_%2853926047977%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "bytes": 747936
+ },
+ {
+  "name": "trina",
+  "file": "trina.jpg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/2/20/Trina_Bleu_Magazine_Signing.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "bytes": 366301
+ },
+ {
+  "name": "wallen",
+  "error": "HTTP Error 429: Too many requests (76af2b0)"
+ },
+ {
+  "name": "trickdaddy",
+  "error": "HTTP Error 429: Too many requests (76af2b0)"
+ }
+]
