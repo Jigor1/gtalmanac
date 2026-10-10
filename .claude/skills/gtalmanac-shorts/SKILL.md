@@ -149,5 +149,6 @@ A rede do ambiente bloqueia a ElevenLabs, o storage.googleapis.com e a maioria d
 ## Robô leitor (artigos completos)
 `python3 kit/tools/read.py <nome> <url> [<url>...] --out <pasta>` baixa o texto completo (TITLE/DATE/URL/SUMMARY + corpo) pelo GitHub (`read/` → `articles/`, workflow `read-articles.yml`). Use para checar fatos antes de gravar o roteiro; o radar descobre as notícias por WebSearch e lê os artigos por este robô (WebFetch falha em rotinas sem supervisão).
 
-## Aprovação e publicação (regra do Igor, 08/10/2026)
-Nenhum vídeo gerado numa conversa com o Igor é publicado sem a aprovação dele. Entregue a página de download, espere o "aprovado" e só então copie o MP4 e a capa para `publish/` no repositório, agende pelo Metricool (createScheduledPost, melhor horário via getBestTimeToPostByNetwork) e confirme com getScheduledPosts. Depois da publicação, apague os arquivos de `publish/`.
+## Aprovação e publicação (regra do Igor, atualizada em 10/10/2026)
+- **Vídeos pedidos numa conversa com o Igor:** nenhum é publicado sem a aprovação dele. Entregue a página de download, espere o "aprovado" e só então copie o MP4 e a capa para `publish/`, agende pelo Metricool (createScheduledPost, melhor horário via getBestTimeToPostByNetwork) e confirme com getScheduledPosts. Depois apague os arquivos de `publish/` (o Metricool guarda a própria cópia).
+- **Vídeos produzidos pela rotina do radar:** o Igor autorizou, em 10/10/2026, que a rotina agende sozinha, sem aprovação prévia. Ele ainda pode mudar ou cancelar no Metricool.
