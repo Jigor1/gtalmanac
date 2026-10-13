@@ -1,0 +1,26 @@
+[
+ {
+  "name": "gtaboom_pc",
+  "file": "gtaboom_pc.jpg",
+  "source": "https://media.gtaboom.com/variants/1920/media/images/76/33/gta-6-on-pc-could-arrive-way-sooner-than-anyone-expected-1.jpg",
+  "bytes": 250500
+ },
+ {
+  "name": "gfinity_pc",
+  "file": "gfinity_pc.webp",
+  "source": "https://gdm-universal-media.b-cdn.net/gfinityesports/52391b38-gta-6-could-reportedly-release-on-pc-before-march-2027.webp?width=1600&height=840",
+  "bytes": 65680
+ },
+ {
+  "name": "vi_art",
+  "file": "vi_art.jpg",
+  "source": "https://www.rockstargames.com/VI/_next/static/media/meta.0t8ty~nlmxq2s.jpg",
+  "bytes": 864851
+ },
+ {
+  "name": "vgtimes",
+  "file": "vgtimes.jpg",
+  "source": "https://files.vgtimes.com/si/game_42134_nws_en.jpg",
+  "bytes": 187764
+ }
+]
